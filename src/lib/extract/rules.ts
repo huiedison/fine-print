@@ -246,7 +246,7 @@ const school: Rule[] = [
       if (/\b(don['’]t|do not|not|aren['’]t|needn['’]t|no need)\b[^.;]{0,60}\b(enrolled|pursuing|working towards?|studying)\b/i.test(s.text)) return null;
       // outside internships this phrasing is usually an alternative ("degree or currently pursuing")
       const levels = degreeLevels(s.text);
-      const alt = /\b(or equivalent|or recent(ly)? graduat|recent(ly)? graduat(es?|ed)|or have (completed|graduated)|have (completed|earned|obtained)|completed or)\b/i.test(s.text);
+      const alt = /\b(or equivalent|or recent(ly)? graduat|recent(ly)? graduat(es?|ed)|or have (recently )?(completed|graduated)|have (recently )?(completed|earned|obtained)|completed or)\b/i.test(s.text);
       if (!ctx.isInternLike && !/\b(must|required|currently enrolled)\b/i.test(s.text)) return null;
       const names = levels.map((l) => (l === "phd" ? "Ph.D." : l === "master" ? "master's" : "bachelor's"));
       return {

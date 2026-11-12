@@ -20,21 +20,19 @@ Edison
 
 ## 60-second demo script
 
-**0:00** "This is an internship on the speedrun board. The filters say intern, on site, no pay listed."
+**0:00** "I tell it three things. Say I'm a student who would need sponsorship, graduates in December 2027, and can work in the U.S. or Canada." Tap the three answers.
 
-**0:08** Paste the link. "fine_print reads the listing and pulls out the lines that matter."
+**0:10** Scroll to the list. "These are live roles from the speedrun board. It reads each one and marks five areas: clear, blocked, or doesn't say."
 
-**0:15** Scroll to Work authorization. "Must be a U.S. Person. That is an export-control term, and it covers permanent residents too, so it does not mean citizens only. The card says so."
+**0:20** Point at a blocked card. "This internship is blocked on work authorization. Tap 'Show the lines' and there is the sentence: must be a U.S. Person. The card explains that term covers green card holders too."
 
-**0:25** Open "Compare with your situation" and tap "Would need sponsorship". "Now it tells me this conflicts with a stated requirement, and shows me the sentence. It never says I can't apply. It says what the listing says."
+**0:32** Same card, Pay. "The board's pay field is empty. The description says 40 to 55 dollars an hour, so it shows that and says where it came from."
 
-**0:35** Scroll to Pay. "The pay field is empty, but the description says 40 to 55 dollars an hour. Found in the text, labeled that way."
+**0:40** Point at a card with dashed marks. "This one says nothing about sponsorship. So it says 'doesn't say'. That is not a yes."
 
-**0:42** Open the second example. "This one is labeled junior. The text asks for a Ph.D. Both are shown."
+**0:47** Tap "Not blocked". "Now I only see the ones worth my time."
 
-**0:48** Open the third. "This one says nothing about sponsorship. So the answer is: doesn't say. That is not a yes."
-
-**0:54** Open `/audit`. "Every number has what it is out of and the date. Including the ones where the tool was wrong."
+**0:52** Paste a link. "Any role on the board works." Open `/audit`. "And every number has what it is out of, the date, and the mistakes the tool made."
 
 ## Before sending
 

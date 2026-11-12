@@ -48,8 +48,8 @@ export default function AuditPage() {
           what the listings say, counted_
         </h1>
         <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-ink-2">
-          We drew {summary.drawn} early-career roles at random from the speedrun board and read each one. These are the
-          counts, with what they are out of, how we checked them, and where fine_print gets it wrong.
+          I pulled {summary.drawn} early-career roles at random from the speedrun board and ran fine_print on each
+          one. Here is what it found, how it was checked, and what it gets wrong.
         </p>
       </section>
 
@@ -63,7 +63,7 @@ export default function AuditPage() {
             junior: {summary.frame_total.toLocaleString("en-US")} roles on {MEASURED_ON} (
             {summary.frame.intern.toLocaleString("en-US")} intern, {summary.frame.new_grad.toLocaleString("en-US")} new
             grad, {summary.frame.junior.toLocaleString("en-US")} junior). We drew {summary.drawn} in proportion to those
-            sizes, with a fixed random seed so the draw can be repeated.
+            sizes. The random seed is fixed, so the same draw can be repeated.
           </li>
           <li>
             <strong className="text-ink">What could be read.</strong> {summary.roles_read} of {summary.drawn}.{" "}
@@ -99,11 +99,8 @@ export default function AuditPage() {
 
       <section className="mt-8" aria-labelledby="checks-h">
         <h2 id="checks-h" className="text-[22px] font-black tracking-[-0.02em]">
-          How we checked the reading
+          How the reading was checked
         </h2>
-        <p className="mt-2 rounded-2xl border-2 border-ink bg-card p-4 text-[15px]">
-          <strong>Who checked.</strong> {e.reviewer} Checked on {e.reviewed_on}.
-        </p>
         <ul className="mt-3 grid gap-3 sm:grid-cols-2">
           <Check title={`Random subset: ${e.random_subset.roles} roles`} correct={e.random_subset.correct} total={e.random_subset.statements}>
             Quoted statements, from {e.random_subset.drawn_from}. {e.random_subset.misses_noticed} missed lines were
@@ -156,8 +153,8 @@ export default function AuditPage() {
           Browse the sample
         </h2>
         <p className="mt-2 text-[15px] text-ink-2">
-          Every role we read, as of {MEASURED_ON}. Open one to read it again live, with its quotes. Some will have
-          closed since.
+          Every role in the sample, as read on {MEASURED_ON}. Tap one to read it again live. Some will have closed
+          since.
         </p>
         <div className="mt-4">
           <SampleList rows={rows as SampleRow[]} />

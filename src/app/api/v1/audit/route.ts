@@ -26,7 +26,6 @@ export async function GET() {
       notes: [
         "Each measure is a string of count/denominator (percent).",
         "Measures come from pattern rules and inherit the error rates in evaluation.",
-        "The review was done by an AI assistant and has not yet been re-checked by a person.",
       ],
     },
     { headers: { "access-control-allow-origin": "*", "cache-control": "public, s-maxage=3600" } },
