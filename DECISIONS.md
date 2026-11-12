@@ -117,3 +117,18 @@ FINE_PRINT_HANDOFF.md revises the original brief. Where they differ, the handoff
 | A13 | The page says "unofficial" and "not affiliated with a16z speedrun" | Wording for Edison to confirm. |
 | A14 | The Join link points to speedrun-talent-network.com/join | Path taken from RESEARCH.md, not re-verified in this session. |
 | A15 | Next.js 16 defaults (Cache Components on), Geist fonts, in-memory 5-minute cache per server instance | The live site's visual language was not inspected; design follows the written brief only. |
+
+## Build log, November 12, 2026 (second pass)
+
+Added `/audit` (measured results, review method, known errors, browsable sample), `/about`, `GET /api/v1/audit`, `llms.txt`, PITCH.md and NEXT.md.
+
+| # | Assumption | Status |
+|---|---|---|
+| A16 | The About page uses only the facts in BUILD_PROMPT (UBC, Economics and Statistics, graduating December 2027, BCI, Photon Collective, Assurefi) | Per the handoff, unconfirmed facts stay out of public copy. The open items show in a "draft notes" box that renders in development only. |
+| A17 | About publishes counts for a labeled example profile, not Edison's own | BUILD_PROMPT asked for his real profile. A1 is still unconfirmed, so the example stands in until he says otherwise. |
+| A18 | The evaluation page states that an AI assistant did the review | It stays until Edison re-checks the 50 roles himself. |
+| A19 | `data/sample-readings.json`, `sample-index.json` and `conflict-calls.json` are committed | They hold findings and quotes of at most 320 characters, never full descriptions. Per-role quotes are a larger share of short listings, so this is worth a second look under A4. |
+| A20 | Not deployed | Deployment is public and needs Edison's Vercel account. The "verify from a clean session" step is still owed. |
+| A21 | Stealth roles pass through as the API masks them (company "Stealth") | A quote could still name the company if the description does. Not checked across stealth roles; there was one on the board today. |
+
+Still not built from BUILD_PROMPT: full crawl and daily refresh, `first_seen` and `last_seen`, `/r/[id]` with share images, `/developers`, MCP tool, rate limiting on our own endpoints, an end-to-end test, a Lighthouse run, analytics.

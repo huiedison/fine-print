@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -33,7 +34,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <a href="/" className="text-[17px] font-extrabold tracking-tight">
               fine_print
             </a>
-            <span className="micro hidden text-ink-3 sm:inline">unofficial · reads the speedrun board</span>
+            <span className="flex items-center gap-1">
+              <Link href="/audit" className="micro rounded-full px-3 py-2 hover:bg-canvas">
+                results
+              </Link>
+              <Link href="/about" className="micro rounded-full px-3 py-2 hover:bg-canvas">
+                about
+              </Link>
+            </span>
           </nav>
         </header>
         <main id="main" className="mx-auto w-full max-w-3xl flex-1 px-4 pb-16 pt-6">
@@ -41,8 +49,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <footer className="mx-auto w-full max-w-3xl px-4 pb-10 text-sm text-ink-2">
           <p>
-            fine_print quotes what a listing says. It is not legal or immigration advice, and it is not affiliated with
-            a16z speedrun. Always read the original listing.
+            fine_print quotes what a listing says. It is unofficial and not affiliated with a16z speedrun, and it is not
+            legal or immigration advice. Always read the original listing.
           </p>
         </footer>
       </body>

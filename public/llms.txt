@@ -1,0 +1,23 @@
+# fine_print
+
+> Reads a job listing on the a16z speedrun talent network and quotes the lines about work authorization, school status, experience, place and pay. Unofficial. Not legal or immigration advice.
+
+fine_print uses deterministic pattern rules, with no model call. Every quote is a verbatim substring of the listing's description text. When a listing does not mention something, fine_print says "doesn't say". Silence is never a pass or a fail.
+
+## Endpoints
+
+- `GET /api/v1/gates/{jobId}`: read one role. `jobId` is a speedrun job UUID, its first 8 hex characters, or the canonical slug. Returns `board` (the board's own labels), `requirements` (each with `gate`, `kind`, `strength`, `summary`, `quote`, `start`, `end`, `rule_id`), `label_conflicts`, `silent_gates`, `text` and `read_at`. Errors: 400 bad id, 404 unknown role, 503 with `retry-after` when the speedrun API is rate limiting.
+- `GET /api/v1/audit`: measured counts from a 300-role sample, with denominators, the date, the review results and known errors.
+
+## Reading the fields
+
+- `strength`: `required`, `preferred`, `alternative` (one of several accepted options) or `info` (a stated fact, not a bar).
+- `gate`: `work_auth`, `school`, `experience`, `place_time`, `pay`, `terms`.
+- Pay under `requirements` was found in the description. The board's own pay field is under `board.comp_*`. The two are never merged.
+- A closed role has no description, so `text.available` is false and `requirements` is empty.
+
+## Limits
+
+- The rules miss and misread lines. See `/api/v1/audit` for measured error rates.
+- English listings only. Work-authorization kinds are about the United States.
+- Always link people to `board.url`, the canonical speedrun listing.
