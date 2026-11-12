@@ -1,0 +1,35 @@
+Jordan Rivera
+Vancouver, BC | jordan.rivera@example.com | linkedin.com/in/jordan-rivera-example
+
+EDUCATION
+University of Northern Cascadia
+Bachelor of Arts in Economics and Statistics    Expected December 2027
+Relevant coursework: Econometrics, Probability, Data Structures
+
+EXPERIENCE
+Harbourline Pension Partners | Product Analyst Intern    May 2026 - Present
+Vancouver, BC
+• Coordinated with compliance, operations and portfolio stakeholders to scope an internal reporting tool
+• Built a Python and SQL pipeline that reduced manual reconciliation time from 6 hours to 40 minutes each week
+• Presented findings to a 12-person steering group and wrote the rollout documentation
+
+Lumen Collective | Co-founder, Go-to-Market Lead    Sep 2025 - Present
+• Ran cold email outreach to 200 investment managers and booked 31 discovery calls
+• Managed a team of 3 students building workflow automation prototypes for clients
+• Led the launch of a client onboarding checklist that cut setup from two weeks to four days
+
+Pacific Ridge Credit Union | Member Services Representative    Jun 2024 - Aug 2025
+• Supported 40 customers a day with account requests and resolved escalations
+• Trained 4 new staff on the teller system
+
+PROJECTS
+Transit Delay Dashboard | Python, Tableau
+• Analyzed 2 million bus arrival records and built a dashboard of delay patterns by route
+• Ran a regression to estimate the effect of weather on delays
+
+Campus Marketplace
+• Built a full-stack marketplace app with Next.js and PostgreSQL used by 300 students
+
+SKILLS
+Languages: Python, SQL, R, JavaScript
+Tools: Excel, Tableau, Figma, Git, Notion

@@ -4,6 +4,7 @@
 // share of the API's rate limit.
 import { readListing, type ApiJob } from "./extract/read";
 import type { Reading } from "./extract/types";
+import { jobFeatures, type JobFeatures } from "./match/features";
 
 const BASE = "https://speedrun-talent-network.com/api/v1";
 const SOURCE = "fine-print";
@@ -15,6 +16,21 @@ export interface ListedRole {
   location: string | null;
   url: string;
   published_at: string | null;
+  function: string | null;
+  seniority: string | null;
+  workplace_type: string | null;
+  employment_type: string | null;
+  remote: boolean;
+  comp_min: number | null;
+  comp_max: number | null;
+  comp_currency: string | null;
+  comp_period: string | null;
+}
+
+/** A reading plus what the listing asks for. Built once per role, while the description is in hand. */
+export interface Analysis {
+  reading: Reading;
+  features: JobFeatures;
 }
 
 export interface RoleList {
@@ -35,7 +51,19 @@ export class BoardError extends Error {
   }
 }
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+/** How long to wait when the board says it is busy. Its retry-after is ten seconds. */
+export let RETRY_MS = 10000;
+export function setRetryMs(ms: number) {
+  RETRY_MS = ms;
+}
+const sleep = (ms: number, signal?: AbortSignal) =>
+  new Promise<void>((resolve, reject) => {
+    const t = setTimeout(resolve, ms);
+    signal?.addEventListener("abort", () => {
+      clearTimeout(t);
+      reject(new DOMException("Aborted", "AbortError"));
+    });
+  });
 
 async function get(path: string, signal?: AbortSignal): Promise<unknown> {
   let res: Response;
@@ -65,22 +93,44 @@ export async function listRoles(
   const params = new URLSearchParams({ lvl: opts.levels.join(","), page: String(opts.page) });
   if (opts.q.trim()) params.set("q", opts.q.trim().slice(0, 120));
   else params.set("sort", "new");
+  return searchRoles(params, signal);
+}
+
+type Raw = Record<string, unknown>;
+const str = (v: unknown) => (typeof v === "string" ? v : null);
+const numOrNull = (v: unknown) => (typeof v === "number" ? v : null);
+
+export function toListedRole(j: Raw): ListedRole {
+  return {
+    id: String(j.id),
+    title: String(j.title ?? ""),
+    company: String(j.company ?? ""),
+    location: str(j.location),
+    url: String(j.url ?? "").split("?")[0],
+    published_at: str(j.published_at),
+    function: str(j.function),
+    seniority: str(j.seniority),
+    workplace_type: str(j.workplace_type),
+    employment_type: str(j.employment_type),
+    remote: j.remote === true,
+    comp_min: numOrNull(j.comp_min),
+    comp_max: numOrNull(j.comp_max),
+    comp_currency: str(j.comp_currency),
+    comp_period: str(j.comp_period),
+  };
+}
+
+/** One list call with any of the board's own filters (q, lvl, fn, eng, wp, metro, page). */
+export async function searchRoles(params: URLSearchParams, signal?: AbortSignal): Promise<RoleList> {
   const body = (await get(`/jobs?${params}`, signal)) as {
-    jobs: (ListedRole & Record<string, unknown>)[];
+    jobs: Raw[];
     total: number;
     page: number;
     has_more: boolean;
     facets?: { lvl?: { v: string; n: number }[] };
   };
   return {
-    roles: body.jobs.map((j) => ({
-      id: j.id,
-      title: j.title,
-      company: j.company,
-      location: j.location ?? null,
-      url: String(j.url).split("?")[0],
-      published_at: j.published_at ?? null,
-    })),
+    roles: body.jobs.map(toListedRole),
     total: body.total,
     page: body.page,
     hasMore: body.has_more,
@@ -89,11 +139,17 @@ export async function listRoles(
   };
 }
 
-const readings = new Map<string, Reading>();
+// Public job data, kept in memory for the visit so the same role is never downloaded twice.
+// It holds readings and short excerpts only, and nothing about the visitor.
+const analyses = new Map<string, Analysis>();
 
-/** Reads one role. Results are kept in memory for the visit; nothing is stored. */
 export async function readRole(key: string, signal?: AbortSignal): Promise<Reading> {
-  const hit = readings.get(key);
+  return (await analyzeRole(key, signal)).reading;
+}
+
+/** Reads one role and what it asks for. Retries when the board says it is busy. */
+export async function analyzeRole(key: string, signal?: AbortSignal): Promise<Analysis> {
+  const hit = analyses.get(key);
   if (hit) return hit;
   let lastError: unknown;
   for (let attempt = 0; attempt < 3; attempt++) {
@@ -101,14 +157,13 @@ export async function readRole(key: string, signal?: AbortSignal): Promise<Readi
       const body = (await get(`/jobs/${encodeURIComponent(key)}`, signal)) as { job?: ApiJob };
       if (!body.job) throw new BoardError("down", "The speedrun board sent an empty answer.");
       const reading = readListing(body.job);
-      readings.set(key, reading);
-      readings.set(reading.board.id, reading);
-      readings.set(reading.board.id.slice(0, 8), reading);
-      return reading;
+      const analysis: Analysis = { reading, features: jobFeatures(body.job.description_text ?? "") };
+      for (const k of [key, reading.board.id, reading.board.id.slice(0, 8)]) analyses.set(k, analysis);
+      return analysis;
     } catch (e) {
       lastError = e;
       if (!(e instanceof BoardError) || e.kind !== "busy") throw e;
-      await sleep(10000); // the board's own retry-after
+      await sleep(RETRY_MS, signal); // the board's own retry-after
     }
   }
   throw lastError;

@@ -155,3 +155,32 @@ Still not built from BUILD_PROMPT: full crawl and daily refresh, `first_seen` an
 | A25 | Place is judged from the board's location string, read by a keyword list | Unknown locations ("4 Locations", a building name) are unclear, never blocked. A remote role listed in a country you did not pick is unclear. |
 | A26 | Pay shows clear when a figure exists and doesn't say when none does | Pay is never blocked. |
 | A27 | GitHub link is github.com/huiedison | Built from the handle Edison gave. |
+
+## Build log, November 12, 2026 (fourth pass: resume upload and ranked matches)
+
+Edison expanded the scope: resume upload and personalized, explainable ranking are now in. This reverses "no resume upload" and "no fit score" in PRD.md and BUILD_PROMPT.md, and both files now say so. README.md documents the flow, the rubric, privacy and limits.
+
+**Decisions**
+
+| # | Decision | Why |
+|---|---|---|
+| D1 | No model. Resume reading and matching are rules, run in the browser | No model key was configured, so a model path could not be tested. Rules keep every explanation quotable and let the privacy promise stay literal: the resume never leaves the device. Cost: a small hand-written vocabulary, so recall is limited. |
+| D2 | pdf.js and mammoth, loaded only on upload | Both run in the browser, so nothing depends on the hosting runtime. |
+| D3 | Limits: 5 MB, 10 pages, at least 200 readable characters, text cut at 60,000 | A text resume is far smaller. A PDF under 200 characters is treated as scanned. |
+| D4 | One profile type (`src/lib/profile.ts`) with adapters | `Answers` in gates.ts is gone. `toCompareProfile` feeds compare.ts. `fine_print.answers.v2` is validated and migrated: its four answers carry over, every new field starts unknown. |
+| D5 | Enrollment, return to school, degree and years are asked directly | `toProfile` used to infer enrollment from the graduation month. It no longer does. The resume offers "use this" suggestions for degree and years, and nothing is applied until the person taps it. |
+| D6 | Five gate states: clear, blocked, unclear, stated, doesn't say | "Clear" now needs a confirmed fact that meets the line. Preferred and informational lines are "stated" (they used to fall through to "clear"). Experience and degree floors are compared with confirmed years and degree. |
+| D7 | Session memory by default; saving is opt-in | Earlier versions saved answers automatically. People who had v2 answers keep them saved; everyone else starts unsaved. The saved profile includes short resume quotes, and the checkbox says so. |
+| D8 | Retrieval: one search per title and function, pool capped at 60, 15 analyzed per batch, 2 requests at a time | The board rate limits near 2 requests a second. Must-haves become API filters where the API has one. |
+| D9 | Rubric out of 16, shown as a label; eligibility kept apart | See README. Past job titles are not scored, so a career change is not penalized. |
+| D10 | Home is the resume flow; the paste-a-link and browse view moved to `/browse` | The resume flow is the main path. `/audit` sample links now open in `/browse`. |
+| D11 | The headline changed to "find the roles worth your application" | The old one described the listing checker, which is now the second path. Edison should confirm. |
+| D12 | End-to-end test uses playwright-core with installed Chrome and a mocked speedrun API | No browser download, and the run is repeatable. Live listings were checked separately by hand. |
+
+**Known gaps**
+
+- The rubric has not been checked against human judgments of fit. Label thresholds are a first guess.
+- Loose vocabulary words can pair a resume line with a listing line that is only loosely related.
+- Degree level is not part of the score.
+- No OCR, no two-column PDF handling, English only.
+- Not deployed; the PDF worker is untested on Vercel.

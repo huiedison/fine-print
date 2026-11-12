@@ -1,26 +1,28 @@
-import { compare, outsideUS, type Comparison, type Profile } from "./compare";
+import { compare, type Comparison } from "./compare";
 import type { Gate, Reading, Requirement } from "./extract/types";
 import { COUNTRY_NAME, countryOf } from "./place";
+import { toCompareProfile, type Facts } from "./profile";
 
-/** The three things a person tells fine_print. All optional, all kept in the browser. */
-export interface Answers {
-  workAuth?: Profile["workAuth"];
-  /** YYYY-MM */
-  gradMonth?: string;
-  countries?: ("US" | "CA" | "other")[];
-  inPerson?: "yes" | "no";
+/** clear: a stated line was checked against a confirmed fact and is met.
+ *  blocked: a stated line plainly rules the person out.
+ *  unclear: the listing says something that could not be checked (hedged wording, or a fact not yet given).
+ *  stated: the listing states something that is information, not a bar to check (pay, a preferred skill).
+ *  silent: the listing says nothing. Never a yes or a no. */
+export type State = "clear" | "blocked" | "unclear" | "stated" | "silent";
+
+export interface GateLine {
+  r: Requirement;
+  index: number;
+  state: Exclude<State, "silent">;
+  because: string | null;
 }
-
-export type State = "clear" | "blocked" | "silent";
 
 export interface GateResult {
   gate: Gate;
   state: State;
-  /** True when the listing says something but it cannot be called clear or blocked. Shown under "doesn't say". */
-  unclear: boolean;
   /** One plain sentence. Always about what the listing says. */
   because: string;
-  lines: { r: Requirement; index: number; state: State; unclear: boolean; because: string | null }[];
+  lines: GateLine[];
 }
 
 export const SHOWN_GATES: Gate[] = ["work_auth", "school", "experience", "place_time", "pay"];
@@ -34,135 +36,105 @@ export const SHORT_LABEL: Record<Gate, string> = {
   terms: "Other terms",
 };
 
-function monthNow(now: Date) {
-  return `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, "0")}`;
-}
+export const STATE_WORD: Record<State, string> = {
+  clear: "clear",
+  blocked: "blocked",
+  unclear: "unclear",
+  stated: "stated",
+  silent: "doesn’t say",
+};
 
-/** What the comparison code needs, worked out from the three answers. */
-export function toProfile(a: Answers, now: Date): Profile {
-  return {
-    workAuth: a.workAuth,
-    gradMonth: a.gradMonth,
-    student: a.gradMonth ? (a.gradMonth > monthNow(now) ? "enrolled" : "graduated") : undefined,
-  };
-}
-
-type Line = GateResult["lines"][number];
-
-function fromComparison(c: Comparison | null): Pick<Line, "state" | "unclear" | "because"> {
-  if (!c) return { state: "clear", unclear: false, because: null };
-  if (c.verdict === "conflicts") return { state: "blocked", unclear: false, because: c.because };
-  if (c.verdict === "meets") return { state: "clear", unclear: false, because: c.because };
-  return { state: "silent", unclear: true, because: c.because };
-}
-
-function schoolLine(r: Requirement, p: Profile): Pick<Line, "state" | "unclear" | "because"> {
-  // We ask for a graduation date and nothing else about school, so a line that
-  // names degree programs can be clear only as far as "you are a student".
-  if (r.kind === "enrolled" && r.strength === "required" && p.student === "enrolled") {
-    const levels = (r.value?.levels as string[] | undefined) ?? [];
-    if (levels.length && !levels.includes("bachelor")) {
-      return { state: "silent", unclear: true, because: "The listing names specific degree programs. Check that yours is one of them." };
-    }
+/** A comparison that returns nothing means the line is information or was not compared.
+ *  That is "stated", never "clear": clear needs a confirmed fact that meets the line. */
+export function fromComparison(c: Comparison | null, r: Requirement): Pick<GateLine, "state" | "because"> {
+  if (!c) {
     return {
-      state: "clear",
-      unclear: false,
-      because: levels.length
-        ? "The listing asks for a current student, and your graduation date is still ahead. It names degree programs, so check yours is one."
-        : "The listing asks for a current student, and your graduation date is still ahead.",
-    };
-  }
-  return fromComparison(compare(r, p));
-}
-
-function experienceLine(r: Requirement): Pick<Line, "state" | "unclear" | "because"> {
-  if (r.strength === "preferred") return { state: "clear", unclear: false, because: "Stated as preferred, not required." };
-  if (r.kind === "years_max") return { state: "clear", unclear: false, because: "The listing is aimed at people early in their careers." };
-  if (r.kind === "years" || r.kind === "degree_phd") {
-    return {
-      state: "silent",
-      unclear: true,
+      state: "stated",
       because:
-        r.strength === "alternative"
-          ? "The listing gives this as one of several options."
-          : "fine_print does not ask about your experience or degree, so it cannot check this one for you.",
+        r.strength === "preferred"
+          ? "Stated as preferred, not required."
+          : r.strength === "alternative"
+            ? "Stated as one of several accepted options."
+            : (r.note ?? null),
     };
   }
-  return { state: "clear", unclear: false, because: null };
+  if (c.verdict === "conflicts") return { state: "blocked", because: c.because };
+  if (c.verdict === "meets") return { state: "clear", because: c.because };
+  return { state: "unclear", because: c.because };
 }
 
-function placeGate(reading: Reading, a: Answers, items: { r: Requirement; index: number }[]): GateResult {
+function roll(gate: Gate, lines: GateLine[]): GateResult {
+  const pick = (s: State) => lines.find((l) => l.state === s);
+  const blocked = pick("blocked");
+  if (blocked) return { gate, state: "blocked", because: blocked.because ?? "A stated requirement rules this out.", lines };
+  const unclear = pick("unclear");
+  if (unclear) return { gate, state: "unclear", because: unclear.because ?? "The listing says something here that could not be checked.", lines };
+  const clear = pick("clear");
+  if (clear) return { gate, state: "clear", because: clear.because ?? "The stated lines here are met.", lines };
+  return { gate, state: "stated", because: pick("stated")?.because ?? "The listing states this for your information.", lines };
+}
+
+function placeGate(reading: Reading, f: Facts, items: { r: Requirement; index: number }[]): GateResult {
   const b = reading.board;
   const country = countryOf(b.location);
   const wp = `${b.workplace_type ?? ""} ${b.label_workplace ?? ""}`.toLowerCase();
   const remoteRole = /remote/.test(wp) || items.some((x) => x.r.kind === "remote" && x.r.value?.scope === "role");
-  const inPersonLine = items.find((x) => ["onsite", "office_days", "relocate"].includes(x.r.kind) && x.r.strength === "required") ??
+  const inPersonLine =
+    items.find((x) => ["onsite", "office_days", "relocate"].includes(x.r.kind) && x.r.strength === "required") ??
     items.find((x) => x.r.kind === "term" && x.r.value?.in_person === true);
   const inPersonNeeded = !!inPersonLine || /onsite|on-site|hybrid/.test(wp);
-
-  const lines: Line[] = items.map((x) => ({ ...x, state: "clear", unclear: false, because: null }));
-  const answered = !!a.countries?.length || !!a.inPerson;
+  const lines: GateLine[] = items.map((x) => ({ ...x, state: "stated", because: null }));
   const where = b.location ? `The board lists this role in ${b.location}.` : "The board does not give a location.";
+  const answered = !!f.countries?.length || !!f.inPerson;
 
-  let state: State = items.length || b.location ? "clear" : "silent";
-  let unclear = false;
-  let because = items.length ? where : b.location ? `${where} The listing adds nothing about where or when you work.` : "The listing does not say where you would work.";
+  if (!items.length && !b.location) return { gate: "place_time", state: "silent", because: "The listing does not say where you would work.", lines };
+  if (!answered) return { gate: "place_time", state: "unclear", because: `${where} Tell us where you can work to check it.`, lines };
 
-  if (!answered) {
-    return { gate: "place_time", state: items.length || b.location ? "silent" : "silent", unclear: !!(items.length || b.location), because: items.length || b.location ? `${where} Tell us where you can work to check it.` : because, lines };
+  if (f.countries?.length && country && !f.countries.includes(country) && !remoteRole)
+    return { gate: "place_time", state: "blocked", because: `${where} You did not pick ${COUNTRY_NAME[country]} as a place you can work.`, lines };
+  if (f.inPerson === "no" && inPersonNeeded && !remoteRole) {
+    const l = inPersonLine ? lines.find((x) => x.index === inPersonLine.index) : null;
+    if (l) l.state = "blocked";
+    return {
+      gate: "place_time",
+      state: "blocked",
+      because: inPersonLine
+        ? "The listing asks for in-person work, and you said you cannot work in person."
+        : `The board labels this role ${b.workplace_type ?? b.label_workplace}, and you said you cannot work in person.`,
+      lines,
+    };
   }
-  if (a.countries?.length && country && !a.countries.includes(country) && !remoteRole) {
-    state = "blocked";
-    because = `${where} You did not pick ${COUNTRY_NAME[country]} as a place you can work.`;
-  } else if (a.inPerson === "no" && inPersonNeeded && !remoteRole) {
-    state = "blocked";
-    because = inPersonLine
-      ? "The listing asks for in-person work, and you said you cannot work in person."
-      : `The board labels this role ${b.workplace_type ?? b.label_workplace}, and you said you cannot work in person.`;
-    if (inPersonLine) {
-      const l = lines.find((x) => x.index === inPersonLine.index);
-      if (l) l.state = "blocked";
-    }
-  } else if (a.countries?.length && !country && !remoteRole) {
-    state = "silent";
-    unclear = true;
-    because = b.location ? `${where} fine_print could not tell which country that is.` : "The listing does not say where you would work.";
-    if (!b.location && !items.length) unclear = false;
-  } else if (remoteRole && a.countries?.length && country && !a.countries.includes(country)) {
-    state = "silent";
-    unclear = true;
-    because = `The role is described as remote, and the board lists it in ${b.location}. It does not say whether you can do it from where you are.`;
-  } else if (remoteRole) {
-    because = "The role is described as remote.";
-  }
-  return { gate: "place_time", state, unclear, because, lines };
+  if (remoteRole && f.countries?.length && country && !f.countries.includes(country))
+    return { gate: "place_time", state: "unclear", because: `The role is described as remote, and the board lists it in ${b.location}. It does not say whether you can do it from where you are.`, lines };
+  if (f.countries?.length && !country && !remoteRole)
+    return { gate: "place_time", state: "unclear", because: `${where} fine_print could not tell which country that is.`, lines };
+  if (!f.countries?.length) return { gate: "place_time", state: "unclear", because: `${where} You have not said which countries you can work in.`, lines };
+  return { gate: "place_time", state: "clear", because: remoteRole ? "The role is described as remote." : `${where} That is a place you said you can work.`, lines };
 }
 
-/** Works out clear, blocked or doesn't say for each gate. Blocked is used only when a
- *  line plainly rules the person out. Anything hedged or unanswered stays under doesn't say. */
-export function gateResults(reading: Reading, answers: Answers, now: Date = new Date()): GateResult[] {
-  const p = toProfile(answers, now);
+/** Works out a state for each gate from confirmed facts only. Blocked is used only when
+ *  a line plainly rules the person out. Nothing is inferred from a resume or a date. */
+export function gateResults(reading: Reading, facts: Facts): GateResult[] {
+  const p = toCompareProfile(facts);
   const loc = reading.board.location;
   return SHOWN_GATES.map((gate): GateResult => {
     const items = reading.requirements.map((r, index) => ({ r, index })).filter((x) => x.r.gate === gate);
 
-    if (gate === "place_time") return placeGate(reading, answers, items);
+    if (gate === "place_time") return placeGate(reading, facts, items);
 
     if (gate === "pay") {
       const onBoard = reading.board.comp_min != null || reading.board.comp_max != null;
-      const lines: Line[] = items.map((x) => ({ ...x, state: "clear", unclear: false, because: null }));
-      if (onBoard) return { gate, state: "clear", unclear: false, because: "Pay is posted on the board.", lines };
-      if (items.length) return { gate, state: "clear", unclear: false, because: "The board's pay field is empty. This figure was found in the description.", lines };
-      return { gate, state: "silent", unclear: false, because: "No pay on the board and none found in the description.", lines };
+      const lines: GateLine[] = items.map((x) => ({ ...x, state: "stated", because: null }));
+      if (onBoard) return { gate, state: "stated", because: "Pay is posted on the board.", lines };
+      if (items.length) return { gate, state: "stated", because: "The board's pay field is empty. This figure was found in the description.", lines };
+      return { gate, state: "silent", because: "No pay on the board and none found in the description.", lines };
     }
 
     if (!items.length) {
-      const text = reading.text.available;
       return {
         gate,
         state: "silent",
-        unclear: false,
-        because: !text
+        because: !reading.text.available
           ? "The board has no description text for this role."
           : gate === "work_auth"
             ? "The listing says nothing about work authorization or sponsorship. That is not a yes or a no."
@@ -171,32 +143,19 @@ export function gateResults(reading: Reading, answers: Answers, now: Date = new 
       };
     }
 
-    const lines: Line[] = items.map((x) => {
-      let res: Pick<Line, "state" | "unclear" | "because">;
-      if (x.r.strength === "preferred") res = { state: "clear", unclear: false, because: "Stated as preferred, not required." };
-      else if (gate === "experience") res = experienceLine(x.r);
-      else if (gate === "school") res = schoolLine(x.r, p);
-      else if (gate === "work_auth" && x.r.strength === "info" && x.r.kind !== "sponsorship_offered")
-        res = { state: "silent", unclear: true, because: x.r.note ?? "The listing mentions this without making it a firm rule." };
-      else if (gate === "work_auth" && x.r.kind === "sponsorship_offered" && p.workAuth && p.workAuth !== "needs_sponsor")
-        res = { state: "clear", unclear: false, because: "The listing says sponsorship is on offer. You said you do not need it." };
-      else res = fromComparison(compare(x.r, p, loc));
-      return { ...x, ...res };
+    const lines: GateLine[] = items.map((x) => {
+      // "may be required" and export-control notices are hedged: unclear, with the note
+      if (gate === "work_auth" && x.r.strength === "info" && x.r.kind !== "sponsorship_offered")
+        return { ...x, state: "unclear", because: x.r.note ?? "The listing mentions this without making it a firm rule." };
+      return { ...x, ...fromComparison(compare(x.r, p, loc), x.r) };
     });
-
-    const blocked = lines.find((l) => l.state === "blocked");
-    const fuzzy = lines.find((l) => l.unclear);
-    if (blocked) return { gate, state: "blocked", unclear: false, because: blocked.because ?? "A stated requirement rules this out.", lines };
-    if (fuzzy) return { gate, state: "silent", unclear: true, because: fuzzy.because ?? "The listing says something here, and it is not a plain yes or no.", lines };
-    const first = lines.find((l) => l.because);
-    return { gate, state: "clear", unclear: false, because: first?.because ?? "Nothing stated here rules you out.", lines };
+    return roll(gate, lines);
   });
 }
 
-export function overall(results: GateResult[]): State {
+export function overall(results: GateResult[]): "blocked" | "clear" | "open" {
   if (results.some((r) => r.state === "blocked")) return "blocked";
-  if (results.filter((r) => r.gate !== "pay").every((r) => r.state === "clear")) return "clear";
-  return "silent";
+  const checked = results.filter((r) => r.gate !== "pay");
+  if (checked.every((r) => r.state === "clear" || r.state === "stated") && checked.some((r) => r.state === "clear")) return "clear";
+  return "open";
 }
-
-export { outsideUS };

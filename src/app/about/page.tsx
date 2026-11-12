@@ -70,7 +70,7 @@ export default function AboutPage() {
 
         <h2 className="pt-2 text-[22px] font-black tracking-[-0.02em]">What it won&apos;t do</h2>
         <p>
-          It won&apos;t apply for you, score your fit, read your resume or call a job fake. It isn&apos;t legal or
+          It won&apos;t apply for you, rewrite your resume or call a job fake. If you upload a resume, it is read in your browser and never sent anywhere. The match labels describe overlap with a listing, not your odds of getting it. It isn&apos;t legal or
           immigration advice. It quotes what the employer wrote and it gets some lines wrong, so read the original
           listing before you decide.
         </p>

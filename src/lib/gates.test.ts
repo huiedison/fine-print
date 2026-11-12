@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { readListing, type ApiJob } from "./extract/read";
-import { gateResults, overall, type Answers } from "./gates";
+import { gateResults, overall } from "./gates";
 import { countryOf } from "./place";
-
-const NOW = new Date("2026-11-12T00:00:00Z");
+import type { Facts } from "./profile";
 
 const job = (over: Partial<ApiJob>): ApiJob => ({
   id: "00000000-0000-0000-0000-000000000000",
@@ -25,12 +24,10 @@ const INTERN = readListing(
   }),
 );
 
-const state = (answers: Answers, gate: string, reading = INTERN) => {
-  const g = gateResults(reading, answers, NOW).find((x) => x.gate === gate)!;
-  return g.state === "silent" && g.unclear ? "unclear" : g.state;
-};
+const gate = (facts: Facts, name: string, reading = INTERN) => gateResults(reading, facts).find((x) => x.gate === name)!;
+const state = (facts: Facts, name: string, reading = INTERN) => gate(facts, name, reading).state;
 
-describe("three states", () => {
+describe("gate states", () => {
   it("work authorization: blocked, clear, and unclear until answered", () => {
     expect(state({ workAuth: "needs_sponsor" }, "work_auth")).toBe("blocked");
     expect(state({ workAuth: "pr" }, "work_auth")).toBe("clear");
@@ -38,61 +35,74 @@ describe("three states", () => {
     expect(state({}, "work_auth")).toBe("unclear");
   });
 
-  it("school: a future graduation date reads as a current student, but return-to-school stays unclear", () => {
-    const g = gateResults(INTERN, { gradMonth: "2027-12" }, NOW).find((x) => x.gate === "school")!;
-    expect(g.lines.find((l) => l.r.kind === "enrolled")?.state).toBe("clear");
-    expect(g.lines.find((l) => l.r.kind === "return_to_school")?.unclear).toBe(true);
-    expect(g.state).toBe("silent");
-    expect(g.unclear).toBe(true);
+  it("a graduation date alone never establishes enrollment", () => {
+    const g = gate({ gradMonth: "2027-12" }, "school");
+    expect(g.lines.find((l) => l.r.kind === "enrolled")?.state).toBe("unclear");
+    expect(g.state).toBe("unclear");
   });
 
-  it("school: someone who has graduated is blocked by a must-be-a-student line", () => {
-    expect(state({ gradMonth: "2025-05" }, "school")).toBe("blocked");
+  it("enrollment and return to school are checked only against direct answers", () => {
+    const g = gate({ enrolled: "yes", degree: "bachelor", returning: "yes" }, "school");
+    expect(g.lines.map((l) => [l.r.kind, l.state])).toEqual([
+      ["enrolled", "clear"],
+      ["return_to_school", "clear"],
+    ]);
+    expect(g.state).toBe("clear");
+    expect(state({ enrolled: "yes", degree: "bachelor" }, "school")).toBe("unclear"); // return to school not answered
+    expect(state({ enrolled: "no" }, "school")).toBe("blocked");
+    expect(state({ enrolled: "yes", degree: "phd", returning: "yes" }, "school")).toBe("blocked"); // listing names bachelor's or master's
   });
 
-  it("place: blocked by country or by in-person work, clear otherwise", () => {
+  it("experience and degree floors are compared with confirmed facts", () => {
+    const r = readListing(job({ title: "Engineer", description_text: "Requirements\n- 3+ years of experience building backend systems\n- Ph.D. in Computer Science" }));
+    expect(state({}, "experience", r)).toBe("unclear");
+    expect(state({ yearsFullTime: 1, degree: "bachelor" }, "experience", r)).toBe("blocked");
+    const years = (f: Facts) => gate(f, "experience", r).lines.find((l) => l.r.kind === "years")?.state;
+    expect(years({ yearsFullTime: 4 })).toBe("clear");
+    expect(years({ yearsFullTime: 2 })).toBe("blocked");
+    expect(years({})).toBe("unclear");
+  });
+
+  it("informational and preferred lines are 'stated', never 'clear'", () => {
+    const r = readListing(job({ title: "Engineer", description_text: "Nice to have\n- 5+ years of experience building distributed systems\n\nVisa sponsorship is available for this role." }));
+    expect(state({ yearsFullTime: 0 }, "experience", r)).toBe("stated");
+    // sponsorship on offer is information for someone who does not need it
+    expect(state({ workAuth: "citizen" }, "work_auth", r)).toBe("stated");
+    expect(state({ workAuth: "needs_sponsor" }, "work_auth", r)).toBe("clear");
+  });
+
+  it("hedged lines are unclear", () => {
+    const r = readListing(job({ description_text: "Visa sponsorship may be available for exceptional candidates.\n- U.S. clearance eligibility may be required depending on program." }));
+    expect(state({ workAuth: "needs_sponsor" }, "work_auth", r)).toBe("unclear");
+    expect(state({ workAuth: "citizen" }, "work_auth", r)).toBe("unclear");
+  });
+
+  it("silence is doesn't say, even for someone who needs sponsorship", () => {
+    const quiet = readListing(job({ description_text: "We build things. Join us." }));
+    expect(state({ workAuth: "needs_sponsor" }, "work_auth", quiet)).toBe("silent");
+    expect(state({}, "pay", quiet)).toBe("silent");
+  });
+
+  it("place: blocked by country or by in-person work, clear otherwise, unclear when it cannot tell", () => {
     expect(state({ countries: ["CA"], inPerson: "yes" }, "place_time")).toBe("blocked");
     expect(state({ countries: ["US"], inPerson: "no" }, "place_time")).toBe("blocked");
     expect(state({ countries: ["US", "CA"], inPerson: "yes" }, "place_time")).toBe("clear");
     expect(state({}, "place_time")).toBe("unclear");
+    const many = readListing(job({ location: "4 Locations", description_text: "We build things." }));
+    expect(state({ countries: ["CA"], inPerson: "yes" }, "place_time", many)).toBe("unclear");
+    const tokyo = readListing(job({ location: "Tokyo", workplace_type: "Remote", description_text: "This role is remote-first." }));
+    expect(state({ countries: ["US", "CA"], inPerson: "yes" }, "place_time", tokyo)).toBe("unclear");
   });
 
-  it("place: a remote role listed in a country you did not pick is unclear, not clear", () => {
-    const r = readListing(job({ location: "Tokyo", workplace_type: "Remote", description_text: "This role is remote-first." }));
-    expect(state({ countries: ["US", "CA"], inPerson: "yes" }, "place_time", r)).toBe("unclear");
+  it("pay is stated, never clear or blocked", () => {
+    expect(state({}, "pay")).toBe("stated");
   });
 
-  it("place: an unreadable location is unclear, never blocked", () => {
-    const r = readListing(job({ location: "4 Locations", description_text: "We build things." }));
-    expect(state({ countries: ["CA"], inPerson: "yes" }, "place_time", r)).toBe("unclear");
-  });
-
-  it("pay: found in the text counts as stated; nothing anywhere is doesn't say", () => {
-    expect(state({}, "pay")).toBe("clear");
-    const none = readListing(job({ description_text: "We build things. Join us." }));
-    expect(state({}, "pay", none)).toBe("silent");
-  });
-
-  it("silence on work authorization is doesn't say, even for someone who needs sponsorship", () => {
-    const quiet = readListing(job({ description_text: "We build things. Join us." }));
-    const g = gateResults(quiet, { workAuth: "needs_sponsor" }, NOW).find((x) => x.gate === "work_auth")!;
-    expect(g.state).toBe("silent");
-    expect(g.unclear).toBe(false);
-  });
-
-  it("experience floors are never called blocked, because we do not ask about experience", () => {
-    const r = readListing(job({ title: "Engineer", description_text: "Requirements\n- 5+ years of experience building backend systems" }));
-    expect(state({ gradMonth: "2027-12" }, "experience", r)).toBe("unclear");
-  });
-
-  it("hedged sponsorship is unclear for someone who needs it", () => {
-    const r = readListing(job({ description_text: "Visa sponsorship may be available for exceptional candidates." }));
-    expect(state({ workAuth: "needs_sponsor" }, "work_auth", r)).toBe("unclear");
-  });
-
-  it("overall is blocked if any gate is blocked", () => {
-    expect(overall(gateResults(INTERN, { workAuth: "needs_sponsor" }, NOW))).toBe("blocked");
-    expect(overall(gateResults(INTERN, { workAuth: "citizen" }, NOW))).toBe("silent");
+  it("overall: blocked if any gate is blocked; clear needs at least one checked line and nothing open", () => {
+    expect(overall(gateResults(INTERN, { workAuth: "needs_sponsor" }))).toBe("blocked");
+    expect(overall(gateResults(INTERN, { workAuth: "citizen" }))).toBe("open");
+    const simple = readListing(job({ description_text: "Requirements\n- Must be a U.S. citizen or permanent resident.\n- 1+ years of experience in support." }));
+    expect(overall(gateResults(simple, { workAuth: "citizen", yearsFullTime: 2, countries: ["US"], inPerson: "yes" }))).toBe("open"); // school is silent
   });
 });
 
