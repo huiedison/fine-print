@@ -43,7 +43,7 @@ async function get(path) {
     let res;
     try {
       res = await fetch(url, { headers: { accept: "application/json" } });
-    } catch (e) {
+    } catch {
       stats.retries++;
       await sleep(1000 * 2 ** attempt);
       continue;

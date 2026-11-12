@@ -124,5 +124,25 @@ writeFileSync(
   "data/sample-readings.json",
   JSON.stringify({ summary, roles: rows.map((r) => ({ sample_level: r.sample_level, ...r.reading })) }),
 );
+// Small files the app imports: the summary, and one compact row per role read.
+writeFileSync("data/audit-summary.json", JSON.stringify(summary, null, 1));
+writeFileSync(
+  "data/sample-index.json",
+  JSON.stringify(
+    withText
+      .map((r) => ({
+        id: r.reading.board.id.slice(0, 8),
+        title: r.reading.board.title,
+        company: r.reading.board.company,
+        location: r.reading.board.location,
+        level: r.sample_level,
+        read_at: r.fetched_at,
+        stated: [...new Set(r.reading.requirements.filter((q) => q.gate !== "terms").map((q) => q.gate))],
+        statements: r.reading.requirements.length,
+        pay_in_text: r.reading.board.comp_min == null && r.reading.requirements.some((q) => q.gate === "pay"),
+      }))
+      .sort((x, y) => x.company.localeCompare(y.company) || x.title.localeCompare(y.title)),
+  ),
+);
 writeFileSync("data/conflict-calls.json", JSON.stringify(conflictCalls, null, 1));
 console.log(JSON.stringify(summary, null, 2));

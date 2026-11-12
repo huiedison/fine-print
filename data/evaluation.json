@@ -1,0 +1,96 @@
+{
+  "reviewed_on": "2026-11-12",
+  "reviewer": "Claude (the AI assistant that built this with Edison). Edison has not yet re-checked these roles himself.",
+  "random_subset": {
+    "roles": 50,
+    "drawn_from": "a seeded shuffle of the first 254 sampled roles (216 intern, 37 new grad, 1 junior)",
+    "statements": 100,
+    "correct": 97,
+    "wrong": 3,
+    "label_flags": 2,
+    "label_flags_wrong": 1,
+    "misses_noticed": 3,
+    "roles_with_a_statement": 44,
+    "extractor_version": "0.1.0"
+  },
+  "held_out": {
+    "roles": 36,
+    "drawn_from": "46 sampled roles never looked at while writing rules, 36 of which had description text. All are junior-labeled, because details were fetched in level order, so this is a harder slice and not a random hold-out.",
+    "statements": 44,
+    "correct": 39,
+    "wrong": 5,
+    "label_flags": 4,
+    "label_flags_wrong": 2,
+    "misses_noticed": 3,
+    "extractor_version": "0.1.0"
+  },
+  "conflict_calls": {
+    "profile": "An example profile, not a real person: would need sponsorship, enrolled in a bachelor's degree, graduating December 2027, returning to school, no full-time experience.",
+    "reviewed": 94,
+    "correct": 90,
+    "wrong": 4,
+    "target": 0.95,
+    "floor": 0.9,
+    "extractor_version": "0.1.0"
+  },
+  "hard_cases": {
+    "description": "Hand-written cases for negation, preferred and alternative qualifications, boilerplate, conflicting text and missing profile facts. Reported apart from the random sample.",
+    "tests": 22,
+    "passing": 22
+  },
+  "known_errors": [
+    {
+      "what": "A sentence about staff tenure (\"42% of our employees have stayed for 10+ years\") was read as a 10-year experience floor.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "\"Home office is available up to 2 days per week\" was read as two days in the office.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "\"Active TS/SCI clearance ... and eligibility for clearance crossover\" was labeled as clearance eligibility when it asks for an active clearance.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "\"We don't specifically look for those working towards a computer science degree\" was read as a must-be-a-student line.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "\"Recently graduated or currently enrolled\" was summarized as students only.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "A role in Bangalore that mentioned the U.S. in passing got a U.S. sponsorship comparison.",
+      "status": "Fixed in 0.2.0"
+    },
+    {
+      "what": "\"Not eligible for new H-1B sponsorship\" was treated as no sponsorship of any kind.",
+      "status": "Fixed in 0.2.0. It now reads as needs clarification."
+    },
+    {
+      "what": "\"1 to 3 years, or an equivalent combination of education and experience\" was treated as a hard floor.",
+      "status": "Fixed in 0.2.0. It now reads as one of several options."
+    },
+    {
+      "what": "Pay stated as one figure in a sentence (\"the annual salary expectation is around $50,760\") was missed.",
+      "status": "Partly fixed in 0.2.0"
+    },
+    {
+      "what": "When a listing gives both a base range and a total compensation range, the first one found is shown.",
+      "status": "Open"
+    },
+    {
+      "what": "Sponsorship policies written as a paragraph of legal context, with no clear yes or no, are not picked up.",
+      "status": "Open"
+    },
+    {
+      "what": "Listings not written in English are mostly unread.",
+      "status": "Open"
+    }
+  ],
+  "caveats": [
+    "The fixes in 0.2.0 were made after the checks above and have not been re-checked on roles the rules have never seen.",
+    "The conflict calls were reviewed on the same sample the rules were tuned on.",
+    "27 of the 300 sampled roles had no description text on the board, so nothing could be read."
+  ]
+}

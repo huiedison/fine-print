@@ -1,0 +1,135 @@
+{
+ "partial_sample": false,
+ "measured_on": "2026-11-12T10:18:30.159Z",
+ "extractor_version": "0.2.0",
+ "frame": {
+  "intern": 8257,
+  "new_grad": 1420,
+  "junior": 1770
+ },
+ "frame_total": 11447,
+ "allocation": {
+  "intern": 216,
+  "new_grad": 37,
+  "junior": 47
+ },
+ "seed": 20261112,
+ "drawn": 300,
+ "fetched": 300,
+ "closed": 0,
+ "no_description": 27,
+ "roles_read": 273,
+ "employers": 115,
+ "top_employers": [
+  [
+   "TikTok",
+   48
+  ],
+  [
+   "Amazon",
+   14
+  ],
+  [
+   "Procter & Gamble",
+   11
+  ],
+  [
+   "CVS Health",
+   11
+  ],
+  [
+   "Astranis",
+   6
+  ],
+  [
+   "Rocket Lab",
+   6
+  ],
+  [
+   "NVIDIA",
+   5
+  ],
+  [
+   "Nissan Global",
+   4
+  ]
+ ],
+ "top_employer_share": "48/273 (17.6%)",
+ "top5_employer_share": "90/273 (33.0%)",
+ "same_company_and_title_duplicates": 8,
+ "truncated_at_15000_chars": "1/273 (0.4%)",
+ "by_level": {
+  "intern": 202,
+  "new_grad": 34,
+  "junior": 37
+ },
+ "measures": {
+  "explicit_eligibility_requirement": "158/273 (57.9%)",
+  "explicit_eligibility_missing_from_fields": "158/273 (57.9%)",
+  "explicit_eligibility_excluding_must_be_a_student": "84/273 (30.8%)",
+  "work_auth_requirement": "65/273 (23.8%)",
+  "us_person_citizenship_or_clearance_line": "23/273 (8.4%)",
+  "mentions_sponsorship_either_way": "36/273 (13.2%)",
+  "silent_on_work_auth": "205/273 (75.1%)",
+  "pay_null_on_board": "261/273 (95.6%)",
+  "pay_null_with_band_in_text": "80/261 (30.7%)",
+  "ambiguous_or_contradictory": "13/273 (4.8%)",
+  "label_conflicts": "2/273 (0.7%)",
+  "at_least_one_quoted_statement": "223/273 (81.7%)"
+ },
+ "by_level_eligibility": {
+  "intern": "140/202 (69.3%)",
+  "new_grad": "10/34 (29.4%)",
+  "junior": "8/37 (21.6%)"
+ },
+ "example_profile": {
+  "workAuth": "needs_sponsor",
+  "student": "enrolled",
+  "degree": "bachelor",
+  "gradMonth": "2027-12",
+  "returning": "yes",
+  "years": 0
+ },
+ "example_profile_calls": {
+  "meets": 116,
+  "conflicts": 90,
+  "clarify": 33
+ },
+ "example_profile_roles_with_a_conflict": "84/273 (30.8%)",
+ "kinds": {
+  "experience.degree_phd.alternative": 4,
+  "experience.degree_phd.preferred": 3,
+  "experience.degree_phd.required": 5,
+  "experience.years.alternative": 2,
+  "experience.years.preferred": 9,
+  "experience.years.required": 12,
+  "experience.years_max.info": 9,
+  "pay.pay_range.info": 75,
+  "pay.pay_single.info": 13,
+  "place_time.home_days.info": 2,
+  "place_time.hybrid.required": 4,
+  "place_time.office_days.required": 10,
+  "place_time.onsite.required": 22,
+  "place_time.relocate.required": 6,
+  "place_time.remote.info": 1,
+  "place_time.term.info": 67,
+  "school.enrolled.alternative": 5,
+  "school.enrolled.preferred": 7,
+  "school.enrolled.required": 120,
+  "school.grad_window.preferred": 5,
+  "school.grad_window.required": 23,
+  "school.return_to_school.preferred": 1,
+  "school.return_to_school.required": 1,
+  "terms.transcripts.info": 10,
+  "terms.trial.info": 1,
+  "work_auth.citizen.required": 5,
+  "work_auth.citizen_or_pr.required": 4,
+  "work_auth.clearance_active.required": 3,
+  "work_auth.clearance_eligible.info": 1,
+  "work_auth.clearance_eligible.required": 1,
+  "work_auth.export_control.info": 10,
+  "work_auth.no_sponsorship.required": 36,
+  "work_auth.us_person.required": 13,
+  "work_auth.work_authorization.required": 12
+ }
+}
