@@ -88,3 +88,32 @@ If killed, build idea 3 with idea 7 inside it: an honest entry-level finder that
 1. **Audience.** Leading with students, co-ops and people who need work authorization, rather than all job seekers. It is half the board and your own story, but it is narrower.
 2. **Rules over AI.** The verdicts are deterministic and quoted. This trades recall for trust and testability. A reviewer may expect more visible AI.
 3. **Tone of the headline.** "Some jobs already said no" is pointed. It must read as on the seeker's side without reading as a dig at portfolio companies.
+
+## Build log, November 12, 2026
+
+FINE_PRINT_HANDOFF.md revises the original brief. Where they differ, the handoff wins.
+
+**Kill criterion: not fired.** Measured numbers are in RESEARCH.md section 8. Eligibility coverage passes the handoff's 25% bar (57.9%, or 30.8% without "must be a student"). Pay recovery is reported on its own (80 of 261 pay-null roles, 30.7%) and does not count toward the bar.
+
+**Changes from the original brief**
+
+- Headline is "See the requirements before you apply", per the handoff. "Some jobs already said no" is dropped.
+- The three gate states are replaced by requirement cards. Each card shows what the listing states and its quote. A comparison appears only after the person shares a fact, and reads "Meets this stated requirement", "Conflicts with this stated requirement" or "Needs clarification" with the reason (silence, ambiguous wording, conflicting text, missing profile information).
+- Profile questions appear only when the listing asks about that fact. Return to school is asked directly and never inferred from a graduation date.
+- Clearance is reported and never judged. U.S. Person lines carry the full definition.
+- Full crawl, daily refresh, MCP, share images, `/r/[id]`, `/audit`, `/about` and `/developers` are deferred until the core flow is reviewed.
+
+**Assumptions made in this session**
+
+| # | Assumption | Status |
+|---|---|---|
+| A1 | Edison is a Canadian citizen without U.S. work authorization | Still unconfirmed. Nothing personal is published. The audit uses a labeled example profile instead. |
+| A2 | The API tolerates about 2 requests a second | Wrong. 41 of 509 requests were rate limited (429, retry after 10s). Any crawl must go slower. The live lookup now reports a rate limit plainly and never caches a failure. |
+| A8 | The target role is Product Engineer (BUILD_PROMPT) and not prompt engineering (handoff) | Unresolved. No model-assisted extraction was built or compared. Needs Edison. |
+| A9 | Fixtures are short verbatim excerpts inside the unit tests, not full descriptions | BUILD_PROMPT asked for full text fixtures. Full text stays in gitignored `data/raw/` so the repo never re-hosts a description. |
+| A10 | "Eligibility requirement" means a line stated as required about authorization, citizenship, clearance, sponsorship, enrollment, return to school or graduation window | Degree and years floors are reported under experience and are not counted as eligibility. |
+| A11 | Work-authorization comparisons are U.S. only. Roles the board places outside the U.S. get "Needs clarification" | The location check is a keyword list and will miss places. |
+| A12 | The hand check was done by Claude | The public evaluation page must say so, or Edison re-checks the 50 roles himself first. |
+| A13 | The page says "unofficial" and "not affiliated with a16z speedrun" | Wording for Edison to confirm. |
+| A14 | The Join link points to speedrun-talent-network.com/join | Path taken from RESEARCH.md, not re-verified in this session. |
+| A15 | Next.js 16 defaults (Cache Components on), Geist fonts, in-memory 5-minute cache per server instance | The live site's visual language was not inspected; design follows the written brief only. |

@@ -1,0 +1,812 @@
+[
+ {
+  "id": "011a51cf",
+  "company": "Nissan Global",
+  "title": "Credit Risk Analytics Intern - Summer 2027 - Irving, TX",
+  "location": "Irving, Texas - United States of America",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Sponsorship: Not Available"
+ },
+ {
+  "id": "0689caa2",
+  "company": "Procter & Gamble",
+  "title": "Marketing Media Internship",
+  "location": "Paris",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Student currently enrolled in a master’s program of a Business or Media specialized school"
+ },
+ {
+  "id": "069e9acd",
+  "company": "Baker Hughes",
+  "title": "Finance Intern- Summer 2027 Opportunities",
+  "location": "3 Locations",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Applicants must be authorized to work in the United States and must maintain work authorization throughout their employment without requiring sponsorship by Baker Hughes, now or in the future."
+ },
+ {
+  "id": "0a48c3a0",
+  "company": "GRVTY",
+  "title": "Associate / Junior Systems Engineer ",
+  "location": "Aurora, Colorado, United States; Sterling, Virginia, United States",
+  "kind": "years",
+  "because": "The listing asks for 2+ years, and you said you have 0.",
+  "quote": "Bachelor’s degree in a STEM field (Systems Engineering, Aerospace Engineering, Computer Science, or related discipline) with 2+ years of professional engineering experience (or Master’s degree with 0–"
+ },
+ {
+  "id": "0c318624",
+  "company": "Flexport",
+  "title": "Software Engineer I",
+  "location": "Shanghai, China",
+  "kind": "years",
+  "because": "The listing asks for 3+ years, and you said you have 0.",
+  "quote": "3+ years of experience writing software, and a strong engineering background."
+ },
+ {
+  "id": "0ed786fa",
+  "company": "Entegris",
+  "title": "Solutions Engineering Intern",
+  "location": "Billerica, MA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Entegris is not currently hiring candidates for co-ops/internships who will need, now or at any time in the future, Entegris sponsorship through the H1-B lottery."
+ },
+ {
+  "id": "11e135f2",
+  "company": "TikTok",
+  "title": "Algorithm Engineer Intern (TikTok Live Revenue) - 2027 Start (PhD)",
+  "location": "Sydney, New South Wales",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing your PhD or Master degree in math, physics, statistics, AI, software engineer, computer science or related engineering field."
+ },
+ {
+  "id": "13cc1c73",
+  "company": "Procter & Gamble",
+  "title": "R&D PhD Summer Intern: Blades Front-End Innovation",
+  "location": "BOSTON GO & TECH CENTER",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Immigration Sponsorship is not available for this role."
+ },
+ {
+  "id": "13cc1c73",
+  "company": "Procter & Gamble",
+  "title": "R&D PhD Summer Intern: Blades Front-End Innovation",
+  "location": "BOSTON GO & TECH CENTER",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "This internship is specifically designed for individuals working towards a PhD who are developing proficiency in their field."
+ },
+ {
+  "id": "163a5c96",
+  "company": "Solar Turbines",
+  "title": "2027 Entry Level Supply Chain Coordinator",
+  "location": "San Diego, California",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Visa Sponsorship is not available for this position."
+ },
+ {
+  "id": "17cd7889",
+  "company": "Nissan Global",
+  "title": "External Reporting Accounting Intern - Summer 2027 - Franklin, TN",
+  "location": "Franklin, Tennessee - United States of America",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Sponsorship: Not Available"
+ },
+ {
+  "id": "190b718d",
+  "company": "RELX",
+  "title": "Command Center Engineer I",
+  "location": "Manila",
+  "kind": "years",
+  "because": "The listing asks for 2+ years, and you said you have 0.",
+  "quote": "At least 2–3 years of networking experience."
+ },
+ {
+  "id": "1df48c3a",
+  "company": "TikTok",
+  "title": "Research Engineer Graduate (Realtime Codec Optimizations-Video Codec) - 2027 Start (PhD)",
+  "location": "San Diego, California",
+  "kind": "degree_phd",
+  "because": "The listing asks for a Ph.D., and you said your degree is a different level.",
+  "quote": "Individuals who are completing or have recently completed a PhD degree in Computer Science, Electrical Engineering, Mathematics, Statistics or a related discipline."
+ },
+ {
+  "id": "1e5f90da",
+  "company": "Astranis",
+  "title": "Electrical Reliability Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "citizen_or_pr",
+  "because": "The listing asks for a citizen or permanent resident, and you said you are someone who would need sponsorship.",
+  "quote": "US Citizenship or Green Card"
+ },
+ {
+  "id": "1e5f90da",
+  "company": "Astranis",
+  "title": "Electrical Reliability Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "2385f260",
+  "company": "Amentum",
+  "title": "Plant Designer Jr.",
+  "location": "US-TN-Oak Ridge",
+  "kind": "citizen",
+  "because": "The listing asks for U.S. citizenship, and you said you are someone who would need sponsorship.",
+  "quote": "U.S. Citizenship required."
+ },
+ {
+  "id": "2c2c08e1",
+  "company": "Stryker",
+  "title": "Summer 2027 Internship - Data Analytics - Michigan",
+  "location": "Portage, Michigan",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Must be legally authorized to work in the U.S. and not require sponsorship now or in the future.​"
+ },
+ {
+  "id": "30ef8d1f",
+  "company": "Rocket Lab",
+  "title": "Flight Software Intern Summer 2027",
+  "location": "Littleton, CO",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "311f276e",
+  "company": "Astranis",
+  "title": "Environmental Test Engineer Associate (Winter 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "341db355",
+  "company": "Rocket Lab",
+  "title": "Supply Chain Intern Spring 2027",
+  "location": "Long Beach, CA",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "350a3cc4",
+  "company": "Entegris",
+  "title": "Manufacturing Engineer Co-Op",
+  "location": "Bedford, MA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Entegris is not currently hiring candidates for co-ops/internships who will need, now or at any time in the future, Entegris sponsorship through the H1-B lottery."
+ },
+ {
+  "id": "37d280b2",
+  "company": "TikTok",
+  "title": "Platform Campaign Project Intern (TikTok Shop - Platform Campaign C) - 2026 Start",
+  "location": "Seattle, Washington",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a Master's degree in Business, Economics, Statistics, Data Science, Computer Science, or a related field."
+ },
+ {
+  "id": "38bf657d",
+  "company": "Graco",
+  "title": "Application Engineering Intern",
+  "location": "Dexter, Michigan, USA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "This role is not eligible for immigration sponsorship now or in the future (e.g., H-1B, TN, F-1 OPT)."
+ },
+ {
+  "id": "396441f5",
+  "company": "Thomas & Hutton",
+  "title": "Entry Level Civil Design Engineer in Training",
+  "location": "Nashville, Tennessee",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Please note: Sponsorship is not available for this position."
+ },
+ {
+  "id": "398a0318",
+  "company": "Rocket Lab",
+  "title": "Test and Launch Operations Engineer I",
+  "location": "Wallops Island, VA",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "398a0318",
+  "company": "Rocket Lab",
+  "title": "Test and Launch Operations Engineer I",
+  "location": "Wallops Island, VA",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "1+ years of experience in engineering design, test and/or operations, electrical/software engineering"
+ },
+ {
+  "id": "3e59369e",
+  "company": "Palantir",
+  "title": "Software Engineer, Internship - Query Engines",
+  "location": "London, United Kingdom",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2028-01 to 2028-12, and yours is 2027-12.",
+  "quote": "Must be planning on graduating in 2028."
+ },
+ {
+  "id": "411b55bf",
+  "company": "TikTok",
+  "title": "AI Infrastructure Engineer Graduate (Algorithm Infrastructure) - 2027 Start (PhD)",
+  "location": "San Jose, California",
+  "kind": "degree_phd",
+  "because": "The listing asks for a Ph.D., and you said your degree is a different level.",
+  "quote": "Individuals who are completing or have recently completed a PhD degree in Software Development, Computer Science, Computer Engineering, or a related technical discipline. in Computer Science, Software"
+ },
+ {
+  "id": "4232ed52",
+  "company": "TikTok",
+  "title": "Machine Learning Engineer Intern (Global E-Commerce, Risk Control) - 2027 Start (PhD)",
+  "location": "Singapore",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a PhD in Computer Science or related fields."
+ },
+ {
+  "id": "424a5e3f",
+  "company": "Salesforce",
+  "title": "Summer 2027 Intern - Tableau Research",
+  "location": "2 Locations",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "You are currently enrolled in a PhD program and in good academic standing, with at least two years of research experience and a record of publishing at respected conferences or journals in areas such "
+ },
+ {
+  "id": "43beb964",
+  "company": "ABB",
+  "title": "Electrical Tendering & Sales Support Intern - Summer 2027",
+  "location": "Houston, Texas, United States of America",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Must be legally authorized to work in the United States without company sponsorship now and in the future."
+ },
+ {
+  "id": "44186bf5",
+  "company": "Caterpillar Inc.",
+  "title": "Human Resources Coach I",
+  "location": "Bangalore, Karnataka",
+  "kind": "years",
+  "because": "The listing asks for 2+ years, and you said you have 0.",
+  "quote": "Working experience in HR Shared Service is mandatory with minimum 2 years (mandatory)"
+ },
+ {
+  "id": "49a156d3",
+  "company": "Dimensional Fund Advisors",
+  "title": "Internship in Global Client Group - Data and Tools (Undergraduate & Master's)",
+  "location": "Austin",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "This role is not eligible for immigration sponsorship."
+ },
+ {
+  "id": "49fd5612",
+  "company": "Pennsylvania State University",
+  "title": "Navigation, Estimation, and Controls Co-Op",
+  "location": "Warminster, PA",
+  "kind": "citizen",
+  "because": "The listing asks for U.S. citizenship, and you said you are someone who would need sponsorship.",
+  "quote": "You will be subject to a government security investigation, and you must be a U.S. citizen to apply."
+ },
+ {
+  "id": "537e3624",
+  "company": "Procter & Gamble",
+  "title": "Supply Chain Internship",
+  "location": "Brussels",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently enrolled in a Master’s program of a Business/ Engineering school or university"
+ },
+ {
+  "id": "573233fb",
+  "company": "Nissan Global",
+  "title": "Computational Material Science Intern - Spring 2027 - Santa Clara, CA",
+  "location": "Santa Clara, California - United States of America",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Must be currently pursuing a PhD in Materials Science, Chemistry, Physics, Chemical Engineering, or a closely related field."
+ },
+ {
+  "id": "57491b3b",
+  "company": "Bank of Montreal",
+  "title": "Quantitative Analyst, Summer 2027 (Co-op/Internship) - 4 Months",
+  "location": "Toronto, ON, CAN",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing or recently completed a Master's degree or PhD in Quantitative Finance, Financial Engineering, Statistics, Mathematics, Computer Science, Data Science, Economics, or a related quant"
+ },
+ {
+  "id": "58bc3142",
+  "company": "Flow Traders",
+  "title": "PhD Graduate Quantitative Researcher",
+  "location": "Hong Kong",
+  "kind": "degree_phd",
+  "because": "The listing asks for a Ph.D., and you said your degree is a different level.",
+  "quote": "A PhD degree in Mathematics, Physics, Computer Science or a related quantitative field."
+ },
+ {
+  "id": "5cd2f405",
+  "company": "KLA",
+  "title": "Product Development Engineering Intern",
+  "location": "Milpitas, CA",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a MS or PhD degree in an Engineering field"
+ },
+ {
+  "id": "5cde0d09",
+  "company": "WeRide",
+  "title": "New Grads 2027 - Software Engineer - Perception/Computer Vision",
+  "location": "San Jose, CA",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2026-12 to 2027-06, and yours is 2027-12.",
+  "quote": "Currently pursuing a degree in Computer Science, Robotics, or a related field, with an expected graduation date between December 2026 and June 2027."
+ },
+ {
+  "id": "6591e2df",
+  "company": "TD Bank",
+  "title": "Commercial Sales Associate I (US)",
+  "location": "Forest Hills, New York",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "1+ years related experience required"
+ },
+ {
+  "id": "6c11d6c9",
+  "company": "Stryker",
+  "title": "Summer 2027 Internship - Clinical Affairs - New Jersey",
+  "location": "Mahwah, New Jersey",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Must be legally authorized to work in the U.S. and not require employment-based sponsorship now or in the future.​"
+ },
+ {
+  "id": "7885021a",
+  "company": "Enova",
+  "title": "Analytics Internship Summer 2027 (Hybrid) ",
+  "location": "Chicago, IL",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "However, we are not able to sponsor visas or take over sponsorship at this time."
+ },
+ {
+  "id": "7d0c3edf",
+  "company": "Rocket Lab",
+  "title": "Indirect Procurement Intern Spring 2027",
+  "location": "Long Beach, CA",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "7d81dfc2",
+  "company": "Astranis",
+  "title": "Automation & Controls Engineering Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "7ede22c0",
+  "company": "The Federal Reserve System",
+  "title": "Business Coordinator I – District/Local Operations",
+  "location": "New Orleans, LA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Applicants must be currently authorized to work in the United States without the need for visa sponsorship now or in the future."
+ },
+ {
+  "id": "7f57cb40",
+  "company": "Nuro",
+  "title": "Software Engineer, AI Platform - New Grad",
+  "location": "Mountain View, California (HQ)",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2026-12 or earlier, and yours is 2027-12.",
+  "quote": "Our software team is growing, and we are looking for talented engineers who are graduating by December 2026 to join us and be instrumental to one of the following areas: Data Platform, Onboard Systems"
+ },
+ {
+  "id": "80ea1729",
+  "company": "Anduril",
+  "title": "Winter 2027 Electrical Engineer Co-op",
+  "location": "Costa Mesa, California, United States; Quincy, Massachusetts, United States",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "Must be a U.S. Person due to required access to U.S. export-controlled information or facilities; U.S. clearance eligibility may be required depending on program."
+ },
+ {
+  "id": "81ec2e92",
+  "company": "TikTok",
+  "title": "Backend Engineer Intern (TikTok Recommendation Architecture) - 2026 Start (PhD)",
+  "location": "Singapore",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a PhD in Computer Science, engineering or quantitative field."
+ },
+ {
+  "id": "85e8f9ec",
+  "company": "TikTok",
+  "title": "Product Manager Intern (Content and Service Ads) - 2027 Summer (MBA)",
+  "location": "San Jose, California",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing an MBA Degree"
+ },
+ {
+  "id": "86926bfa",
+  "company": "NVIDIA",
+  "title": "PhD Research Intern, Generalist Embodied Agents Research - 2027",
+  "location": "2 Locations",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Pursuing a PhD degree in Computer Science/Engineering, Electrical Engineering, etc."
+ },
+ {
+  "id": "883b36df",
+  "company": "Nissan Global",
+  "title": "R&D Tax Credit Intern - Summer 2027 - Franklin, TN",
+  "location": "Franklin, Tennessee - United States of America",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Sponsorship: Not Available"
+ },
+ {
+  "id": "8f883a23",
+  "company": "Stryker",
+  "title": "Quality Engineering Intern",
+  "location": "Flower Mound, Texas",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Must be legally authorized to work in the U.S. and not require employment-based sponsorship now or in the future.​"
+ },
+ {
+  "id": "8fbc0fe9",
+  "company": "Mass General Brigham",
+  "title": "Psychiatric Counselor I",
+  "location": "Northampton-MA",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "Minimum of 1-3 years experience working with the mentally ill and substance abuse populations required"
+ },
+ {
+  "id": "9201f65a",
+  "company": "TikTok",
+  "title": "Research Scientist Graduate (TikTok - Data - Search - Search Quality) - 2027 Start (PhD)",
+  "location": "San Jose, California",
+  "kind": "degree_phd",
+  "because": "The listing asks for a Ph.D., and you said your degree is a different level.",
+  "quote": "Individuals currently pursuing or recently completed a PhD degree in Computer Science, Electrical Engineering, Machine Learning, Artificial Intelligence, Information Retrieval, Natural Language Proces"
+ },
+ {
+  "id": "933e48fb",
+  "company": "Entegris",
+  "title": "Customer Service Co-Op",
+  "location": "Chaska, MN",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Entegris is not currently hiring candidates for co-ops/internships who will need, now or at any time in the future, Entegris sponsorship through the H1-B lottery."
+ },
+ {
+  "id": "95bab123",
+  "company": "Amazon",
+  "title": "UX Designer Intern – Summer 2027",
+  "location": "Seattle, Washington, USA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Please note that we are unable to offer visa sponsorship for this role."
+ },
+ {
+  "id": "99c289fa",
+  "company": "Cerebras",
+  "title": "Software Engineer - New Grad 2026",
+  "location": "Toronto, CAN",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2026-01 to 2026-12, and yours is 2027-12.",
+  "quote": "Recently graduated or currently enrolled in a university program in Computer Science, Computer Engineering, Electrical Engineering, or a related discipline (graduating in 2026)."
+ },
+ {
+  "id": "99d16cac",
+  "company": "TikTok",
+  "title": "Research Engineer Intern (Monetization Technology - Business Integrity) - 2027 Start (PhD)",
+  "location": "San Jose, California",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a PhD in Computer Science, Software Engineering, Electronic Engineering, Automation, Mathematics, Statistics, or a related technical discipline (completed, or expecting to graduate "
+ },
+ {
+  "id": "9bdd717b",
+  "company": "Rocket Lab",
+  "title": "Business Development Intern Summer 2027",
+  "location": "Toronto, CAN",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "9c48b236",
+  "company": "Toyota Research Institute",
+  "title": "Automated Driving Advanced Development Intern, Machine Learning Research",
+  "location": "Los Altos, CA",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a Ph.D. or master’s degree in Computer Science, Robotics, Machine Learning, Artificial Intelligence, Engineering, or a related field."
+ },
+ {
+  "id": "a58049c7",
+  "company": "RELX",
+  "title": "Audit & Risk Mgmt Specialist I",
+  "location": "Manila",
+  "kind": "years",
+  "because": "The listing asks for 4+ years, and you said you have 0.",
+  "quote": "4 to 6 years of relevant experience in external audit, statutory reporting, financial reporting compliance, tax compliance support, or finance shared services."
+ },
+ {
+  "id": "a59c924f",
+  "company": "Astranis",
+  "title": "CAD Engineer Intern (Winter 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "aa5bc9f4",
+  "company": "Deluxe",
+  "title": "Technical Product Analyst I",
+  "location": "3 Locations",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "1+ year of Help Desk and/or customer service experience"
+ },
+ {
+  "id": "ae1dba0b",
+  "company": "Rocket Lab",
+  "title": "Manufacturing Engineer I - Propulsion",
+  "location": "Long Beach, CA",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "To conform to U.S. Government space technology export regulations, including the International Traffic in Arms Regulations (ITAR), Rocket Lab Employees must be a U.S. citizen, lawful U.S. permanent re"
+ },
+ {
+  "id": "b3b6d7b2",
+  "company": "Littelfuse",
+  "title": "Planner Jr",
+  "location": "Matehuala",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "1+ year of experience in Production Planning, Scheduling, Supply Chain, or related manufacturing environments."
+ },
+ {
+  "id": "b96db097",
+  "company": "Draper",
+  "title": "Sensor Electrical Engineering Intern (Summer 2027)",
+  "location": "Cambridge, MA",
+  "kind": "citizen",
+  "because": "The listing asks for U.S. citizenship, and you said you are someone who would need sponsorship.",
+  "quote": "Students must be US citizens who are enrolled in an accredited engineering curriculum."
+ },
+ {
+  "id": "b96db097",
+  "company": "Draper",
+  "title": "Sensor Electrical Engineering Intern (Summer 2027)",
+  "location": "Cambridge, MA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Draper is unable to sponsor or hire individuals holding H1B or Student Visas."
+ },
+ {
+  "id": "b9df022c",
+  "company": "CVS Health",
+  "title": "Oak Street Health New Graduate Nurse Practitioner Fellowship (Spanish Preferred)",
+  "location": "PA - Lancaster",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2025-05 to 2026-12, and yours is 2027-12.",
+  "quote": "Family, adult, or adult-gerontology primary care nurse practitioners who graduated or will graduate from their programs between May 2025 and December 2026."
+ },
+ {
+  "id": "becf62c0",
+  "company": "Astranis",
+  "title": "Embedded Software Developer, Network/Payload Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "c07a9e1e",
+  "company": "Monolithic Power Systems",
+  "title": "Package Material R&D Engineer (New Grad)",
+  "location": "Hong Kong - China",
+  "kind": "degree_phd",
+  "because": "The listing asks for a Ph.D., and you said your degree is a different level.",
+  "quote": "PhD degree in Materials Science, Chemical Engineering, Polymer Science, Chemistry, or a closely related field."
+ },
+ {
+  "id": "c52f25ac",
+  "company": "Red Hat",
+  "title": "NA Field Marketing - Ecosystem Marketing Intern",
+  "location": "Raleigh",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Red Hat will not be providing visa sponsorship for this position."
+ },
+ {
+  "id": "c7a7161e",
+  "company": "Stryker",
+  "title": "Summer 2027 Internship - Joint Replacement Sales - Los Angeles, CA",
+  "location": "Los Angeles, California",
+  "kind": "citizen_or_pr",
+  "because": "The listing asks for a citizen or permanent resident, and you said you are someone who would need sponsorship.",
+  "quote": "Must be permanent resident of the U.S. or U.S. citizen"
+ },
+ {
+  "id": "cafdda9e",
+  "company": "The Federal Reserve System",
+  "title": "2027 Summer Internship Program - Statistics Intern",
+  "location": "Atlanta, GA",
+  "kind": "citizen",
+  "because": "The listing asks for U.S. citizenship, and you said you are someone who would need sponsorship.",
+  "quote": "Interns in Statistics must be a United States Citizen and pass an enhance background screening prior to hire."
+ },
+ {
+  "id": "cafdda9e",
+  "company": "The Federal Reserve System",
+  "title": "2027 Summer Internship Program - Statistics Intern",
+  "location": "Atlanta, GA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Applicants must be currently authorized to work in the United States without the need for visa sponsorship now or in the future."
+ },
+ {
+  "id": "cf055dd8",
+  "company": "The Federal Reserve System",
+  "title": "2027 Summer Internship - Knowledge and Information Management Intern",
+  "location": "Atlanta, GA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Applicants must be currently authorized to work in the United States without the need for visa sponsorship now or in the future."
+ },
+ {
+  "id": "d591ce3a",
+  "company": "Motorola",
+  "title": "Intern - Embedded Software, System, and Test Engineer - 2026",
+  "location": "Irvine, CA",
+  "kind": "citizen",
+  "because": "The listing asks for U.S. citizenship, and you said you are someone who would need sponsorship.",
+  "quote": "Must be a U.S. Citizen due to clients under U.S. government contracts."
+ },
+ {
+  "id": "de726a79",
+  "company": "Amazon",
+  "title": "Mechatronic Apprentice I, RIC6 RME",
+  "location": "Franklin, Indiana, USA",
+  "kind": "years",
+  "because": "The listing asks for 1+ years, and you said you have 0.",
+  "quote": "1+ years of PC software experience including Microsoft Word, Excel and Outlook experience"
+ },
+ {
+  "id": "e3fcf793",
+  "company": "Astranis",
+  "title": "Thermal Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "citizen_or_pr",
+  "because": "The listing asks for a citizen or permanent resident, and you said you are someone who would need sponsorship.",
+  "quote": "US Citizenship or Green Card"
+ },
+ {
+  "id": "e3fcf793",
+  "company": "Astranis",
+  "title": "Thermal Intern (Summer 2027)",
+  "location": "San Francisco",
+  "kind": "us_person",
+  "because": "The listing asks for a U.S. Person. People who need visa sponsorship are not U.S. Persons under that definition.",
+  "quote": "U.S. Citizenship, Lawful Permanent Residency, or Refugee/Asylee Status Required"
+ },
+ {
+  "id": "e63bb440",
+  "company": "Procter & Gamble",
+  "title": "Manufacturing Internship, Summer 2027",
+  "location": "23 Locations",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Immigration Sponsorship is not available for this role."
+ },
+ {
+  "id": "e9bf328e",
+  "company": "Northwestern Mutual",
+  "title": "Underwriting Operations & Field Engagement Intern, Year round",
+  "location": "Milwaukee, WI Corporate",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Employer immigration sponsorship is not available for this role."
+ },
+ {
+  "id": "ec02c3d1",
+  "company": "Graco",
+  "title": "Manufacturing Engineering Intern",
+  "location": "Erie, Pennsylvania, USA",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "This role is not eligible for immigration sponsorship now or in the future (e.g., H-1B, TN, F-1 OPT)."
+ },
+ {
+  "id": "ec6f863b",
+  "company": "ABB",
+  "title": "Electrical Design Engineer Intern- Summer 2027",
+  "location": "Fort Smith, Arkansas, United States of America",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Must be legally authorized to work in the United States without company sponsorship now and in the future."
+ },
+ {
+  "id": "f05851b4",
+  "company": "TikTok",
+  "title": "Software Engineer Intern (ML Infra) - 2027 Start (PhD)",
+  "location": "San Jose, California",
+  "kind": "enrolled",
+  "because": "The listing names specific degree programs, and yours (bachelor) is not among them.",
+  "quote": "Currently pursuing a PhD degree in Computer Science, AI, Machine Learning or a related discipline."
+ },
+ {
+  "id": "f4e6ee3a",
+  "company": "ICF International",
+  "title": "2027 Summer Intern, Energy Researcher (Reston, VA; Arlington, VA; New York, NY)",
+  "location": "3 Locations",
+  "kind": "citizen_or_pr",
+  "because": "The listing asks for a citizen or permanent resident, and you said you are someone who would need sponsorship.",
+  "quote": "Due to contract requirements, U.S. Citizenship or Permanent Work Authorization is required."
+ },
+ {
+  "id": "f553ce86",
+  "company": "Deutsche Bank",
+  "title": "Swiss Graduate Programme 2027_Private Bank US&EI",
+  "location": "Zürich Prime Tower",
+  "kind": "grad_window",
+  "because": "The listing's graduation window reads as 2027-07 or earlier, and yours is 2027-12.",
+  "quote": "Be able to start full-time work in July 2027, i.e. complete your studies (all final exams, coursework and have no outstanding requirements for graduation by then)"
+ },
+ {
+  "id": "f89e6bcb",
+  "company": "Entegris",
+  "title": "Manufacturing Engineering Co-Op",
+  "location": "Aurora, IL",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Entegris is not currently hiring candidates for co-ops/internships who will need, now or at any time in the future, Entegris sponsorship through the H1-B lottery."
+ },
+ {
+  "id": "fc7ce37b",
+  "company": "TD Bank",
+  "title": "Audit Manager I (US) Internal Audit Learning and Development",
+  "location": "4 Locations",
+  "kind": "years",
+  "because": "The listing asks for 5+ years, and you said you have 0.",
+  "quote": "5+ years of relevant experience"
+ },
+ {
+  "id": "fe917ac2",
+  "company": "Chevron Corporation",
+  "title": "2026-2027 Facilities Engineering Operations and Turnarounds Construction Engineering Intern",
+  "location": "4 Locations",
+  "kind": "no_sponsorship",
+  "because": "The listing says it does not sponsor visas, and you said you would need sponsorship.",
+  "quote": "Chevron regrets that it is unable to sponsor employment Visas or consider individuals on time-limited Visa status for this position"
+ }
+]

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-canvas: #eceae5;
+  --color-ink: #0c0c0c;
+  --color-ink-2: #55524c;
+  --color-ink-3: #6f6b64;
+  --color-card: #ffffff;
+  --color-line: #d9d6cf;
+  --color-accent: #5b3df5;
+  --color-accent-soft: #ece8ff;
+  --color-mark: #fff3b0;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  background: #eceae5;
+}
+
+body {
+  background: #eceae5;
+  color: #0c0c0c;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+:focus-visible {
+  outline: 3px solid #5b3df5;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.micro {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-banner {
+  background:
+    radial-gradient(120% 140% at 0% 0%, #cfc4ff 0%, transparent 55%),
+    radial-gradient(120% 140% at 100% 0%, #ffd9b8 0%, transparent 55%),
+    radial-gradient(120% 160% at 50% 120%, #b9e6ff 0%, transparent 60%), #f4f1ff;
+}
+
+@keyframes pulse-soft {
+  50% {
+    opacity: 0.45;
+  }
+}
+.skeleton {
+  animation: pulse-soft 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

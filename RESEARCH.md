@@ -145,3 +145,62 @@ Sources: https://github.com/santifer/career-ops ; https://scoutify.com/blog/tsen
 5. Whether `jobs/{id}.labels.min_experience` already captures degree floors.
 6. Ashby and Lever endpoint behavior and terms.
 7. The live site's visual language. I read text only, not rendered pages.
+
+## 8. Verified November 12, 2026 (build session)
+
+Everything here was measured on Nov 12, 2026 against API v1.5.0 (the research above saw v1.4.0). Scripts: `scripts/sample.mjs`, `scripts/audit.ts`, `scripts/review.ts`. Full descriptions are cached in `data/raw/` (gitignored) and never committed.
+
+### API behavior
+
+- **[fact]** Filters work: `lvl`, `posted`, `sort=new`, `comp` with `comp_any`, `page`. Facet counts respond to the query. `page=200` and beyond return an empty list.
+- **[fact]** Early-career frame today: intern 8,257, new_grad 1,420, junior 1,770, total 11,447 of 23,516 open roles (48.7%).
+- **[fact]** Structured pay is rare in this frame: 38 of 8,257 intern roles (0.5%) and 221 of 11,447 early-career roles (1.9%) have `compAvailable`.
+- **[fact]** `yoe` mix: intern is 6,991 "0", 128 under_1, 86 1_2, 24 3_5, 1,028 unlabeled. Junior is 401 1_2, 328 "0", 166 3_5, 61 under_1, 7 6_9, 1 10_14, 806 unlabeled.
+- **[fact]** Detail responses wrap the role in `{ job, source }`. `labels.min_experience` is a band string ("no experience", "3 to 5 yrs"). It does not capture degree floors (answers item 5 in section 7).
+- **[fact]** Cache headers: list `s-maxage=60`, detail `s-maxage=300`, both `stale-while-revalidate=600`.
+- **[fact]** Rate limit: Cloudflare answers 429 (error 1015, `retry-after: 10`). At about 2 requests a second the sampler made 509 requests and got 41 429s and 4 500s. Assumption A2 is wrong as written: a crawl needs to run slower than 2 requests a second.
+- **[fact]** Description text keeps some HTML entities (`&mdash;`, `&#xa;`). Quotes stay verbatim; the UI decodes them for display only.
+
+### Sample
+
+- Frame: all roles labeled intern, new_grad or junior. Seeded draw (seed 20261112), proportional by level: 216 intern, 37 new_grad, 47 junior. 300 drawn, 300 fetched, 0 closed, 0 duplicate ids.
+- **27 of 300 (9.0%) had no description text.** Roles read: 273 (202 intern, 34 new_grad, 37 junior).
+- 115 employers. Concentration: TikTok 48 of 273 (17.6%), top five employers 90 of 273 (33.0%). 8 roles share a company and title with another sampled role (location variants).
+- The frame is global. Many sampled roles are outside the U.S. (Singapore, London, Manila, Dubai and others), and most top employers are wider-market companies, not portfolio startups.
+
+### Measures (n = 273 roles read, extractor v0.2.0)
+
+| Measure | Count | Share |
+|---|---|---|
+| Explicit eligibility requirement (authorization or school status, stated as required) | 158 / 273 | 57.9% |
+| Same, missing from structured fields (the board has no authorization or school fields, so all of them) | 158 / 273 | 57.9% |
+| Same, not counting "must be a current student" | 84 / 273 | 30.8% |
+| Work authorization requirement | 65 / 273 | 23.8% |
+| U.S. Person, citizenship or clearance line | 23 / 273 | 8.4% |
+| Mentions sponsorship either way | 36 / 273 | 13.2% |
+| Silent on work authorization | 205 / 273 | 75.1% |
+| Pay-null roles with a pay figure in the text | 80 / 261 | 30.7% |
+| Ambiguous or contradictory requirements | 13 / 273 | 4.8% |
+| Board label contradicted by the text | 2 / 273 | 0.7% |
+| At least one quoted statement | 223 / 273 | 81.7% |
+
+By level, explicit eligibility: intern 140 / 202 (69.3%), new_grad 10 / 34 (29.4%), junior 8 / 37 (21.6%).
+
+**Threshold.** The handoff's provisional bar is 25% of sampled early-career roles with an explicit eligibility requirement missing from structured fields. Measured 57.9%, or 30.8% under the stricter reading that leaves out "must be a student" on a role already labeled an internship. It passes on both, driven by internships. New-grad and junior roles alone sit near the bar.
+
+### Extraction check
+
+Reviewed by Claude in the build session, not yet by Edison. Treat these as a first pass.
+
+- **Random subset, 50 roles** (seeded shuffle of the 254 roles fetched first; 216 intern, 37 new_grad, 1 junior). 100 quoted statements, 97 correct, 3 wrong. One of two label-conflict flags was wrong. 3 misses noticed. 44 of 50 roles had at least one statement.
+- **Held-out set, 36 roles with text** (46 roles never inspected while writing rules). 44 statements, 39 correct, 5 wrong (88.6%). 2 of 4 label-conflict flags wrong. 3 misses noticed. Caveat: because details were fetched in level order, the held-out set is all junior-labeled roles, so it is a harder, different slice and not a random hold-out.
+- Errors found were fixed afterwards (v0.2.0). **The fixes have not been re-checked on unseen roles.**
+- **Hard cases** (negation, preferred, alternative, boilerplate, conflicting text, missing profile facts) are reported separately as unit tests: 22 of 22 pass (`npm test`).
+
+### Personal conflict calls
+
+Example profile (an example, not a real person): would need sponsorship, enrolled in a bachelor's, graduating December 2027, returning to school, 0 years of experience.
+
+- 94 conflict calls reviewed across the 273 roles: 90 correct, 4 wrong (95.7%). Target 95%, floor 90%.
+- The 4 wrong calls: one India-based role read as a U.S. sponsorship line, one "no new H-1B" line read as no sponsorship at all, two "years or equivalent" lines read as hard floors. All four patterns are fixed in v0.2.0; after the fixes the same profile gets 90 conflict calls, 116 meets, 33 needs clarification, with a conflict on 84 of 273 roles (30.8%).
+- Same caveat: reviewed by Claude, on the same sample the rules were tuned on.
