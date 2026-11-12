@@ -132,3 +132,26 @@ Added `/audit` (measured results, review method, known errors, browsable sample)
 | A21 | Stealth roles pass through as the API masks them (company "Stealth") | A quote could still name the company if the description does. Not checked across stealth roles; there was one on the board today. |
 
 Still not built from BUILD_PROMPT: full crawl and daily refresh, `first_seen` and `last_seen`, `/r/[id]` with share images, `/developers`, MCP tool, rate limiting on our own endpoints, an end-to-end test, a Lighthouse run, analytics.
+
+## Build log, November 12, 2026 (third pass, Edison's feedback)
+
+**Product shape.** Back to the original pick: you tell it three things (work authorization, graduation date, where you can work), it reads listings for the lines that rule you in or out, and each gate shows clear, blocked or doesn't say. This replaces the handoff's "Meets / Conflicts / Needs clarification" cards on the home page. Edison's call.
+
+**Decisions Edison made**
+
+- Listings come live from the speedrun API. The browser calls it directly (it is CORS-open), reads 10 roles at a time, one request after another. No crawl and no index. Each visitor uses their own share of the rate limit, and descriptions never pass through a fine_print server.
+- "Where you can work" is countries (U.S., Canada, somewhere else) plus whether you can work in person or move.
+- Anything hedged or unanswered shows under doesn't say with an "unclear" mark and the quote. Blocked is kept for lines that plainly rule you out.
+- About: Assurefi removed; BCI role is product manager focused on AI integrations; no application story; his own work authorization is not mentioned; the example-student count stays; LinkedIn and GitHub links added.
+- The "Who checked" line is removed from `/audit` and from `GET /api/v1/audit`. The record of who did the review stays in RESEARCH.md section 8 and in A12 above.
+
+**Assumptions in this pass**
+
+| # | Assumption | Status |
+|---|---|---|
+| A22 | Experience and degree floors are never called blocked | The three questions do not ask about experience or degree, so those lines show as unclear with the quote. |
+| A23 | "Must be a current student (bachelor's or master's)" reads as clear for anyone whose graduation date is ahead | The card adds "check yours is one". Lines that name only master's or Ph.D. programs show as unclear. |
+| A24 | "Must return to school" stays unclear | A graduation date cannot show it, and there is no fourth question. |
+| A25 | Place is judged from the board's location string, read by a keyword list | Unknown locations ("4 Locations", a building name) are unclear, never blocked. A remote role listed in a country you did not pick is unclear. |
+| A26 | Pay shows clear when a figure exists and doesn't say when none does | Pay is never blocked. |
+| A27 | GitHub link is github.com/huiedison | Built from the handle Edison gave. |

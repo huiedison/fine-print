@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   title: "fine_print: see the requirements before you apply",
   description:
-    "Paste a speedrun talent network job link. fine_print reads the listing and quotes the lines about work authorization, school status, experience, place and pay.",
+    "Tell fine_print three things about you. It reads listings on the speedrun talent network for the lines that rule you in or out, and quotes them.",
 };
 
 export const viewport: Viewport = { themeColor: "#eceae5" };

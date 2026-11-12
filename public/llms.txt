@@ -1,6 +1,6 @@
 # fine_print
 
-> Reads a job listing on the a16z speedrun talent network and quotes the lines about work authorization, school status, experience, place and pay. Unofficial. Not legal or immigration advice.
+> Reads job listings on the a16z speedrun talent network and quotes the lines about work authorization, school status, experience, place and pay. On the site, a person answers three questions and each area shows clear, blocked or doesn't say. Unofficial. Not legal or immigration advice.
 
 fine_print uses deterministic pattern rules, with no model call. Every quote is a verbatim substring of the listing's description text. When a listing does not mention something, fine_print says "doesn't say". Silence is never a pass or a fail.
 

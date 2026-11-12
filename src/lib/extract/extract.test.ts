@@ -128,6 +128,10 @@ describe("hard cases", () => {
     expect(find("We raised $20 - $30 million in salary-linked financing.", "pay_range")).toBeUndefined();
     expect(find("We offer a $1,000 - $2,000 learning stipend.", "pay_range")).toBeUndefined();
   });
+  it("students or recent graduates is not a students-only line", () => {
+    const r = find("- Must be pursuing or have recently completed a bachelor’s degree in Finance.", "enrolled", true);
+    expect(r?.strength).toBe("alternative");
+  });
   it("label-only lines state nothing", () => {
     expect(find("Security Clearance Requirement:", "clearance_eligible")).toBeUndefined();
   });

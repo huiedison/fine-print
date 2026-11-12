@@ -1,5 +1,5 @@
-import Checker from "@/components/Checker";
+import Finder from "@/components/Finder";
 
 export default function Home() {
-  return <Checker />;
+  return <Finder />;
 }

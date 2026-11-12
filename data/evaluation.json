@@ -1,6 +1,5 @@
 {
   "reviewed_on": "2026-11-12",
-  "reviewer": "Claude (the AI assistant that built this with Edison). Edison has not yet re-checked these roles himself.",
   "random_subset": {
     "roles": 50,
     "drawn_from": "a seeded shuffle of the first 254 sampled roles (216 intern, 37 new grad, 1 junior)",
