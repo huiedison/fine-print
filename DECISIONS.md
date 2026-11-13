@@ -184,3 +184,11 @@ Edison expanded the scope: resume upload and personalized, explainable ranking a
 - Degree level is not part of the score.
 - No OCR, no two-column PDF handling, English only.
 - Not deployed; the PDF worker is untested on Vercel.
+
+## Hosting, November 13, 2026
+
+fine_print is hosted on Vercel. The repo now says so: `vercel.json` (Next.js, `npm install`, `npm run build`) and a Hosting section in README.md with a deploy button and the preview and production rules. No environment variables are needed.
+
+- This supersedes A20 ("Not deployed"), except that the live URL is not recorded here. Add it to README.md once Vercel assigns one.
+- A6 (Vercel with no database) still holds. No scheduled refresh exists, so no GitHub Action is needed.
+- Still owed: confirm PDF upload and live roles on the deployed site, and replace `[LINK]` in PITCH.md.

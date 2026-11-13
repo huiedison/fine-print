@@ -21,6 +21,18 @@ npm run e2e        # needs the app running and Google Chrome installed
 
 No environment variables are needed. See `.env.example`.
 
+## Hosting
+
+fine_print is hosted on [Vercel](https://vercel.com). The config lives in [`vercel.json`](vercel.json) (Next.js, `npm install`, `npm run build`).
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fhuiedison%2Ffine-print)
+
+- **Deploys:** pushing to `main` deploys to production. Pushing any other branch or opening a pull request makes a preview deployment with its own URL.
+- **Settings:** import the GitHub repo at [vercel.com/new](https://vercel.com/new) and keep the defaults. Add no environment variables. Node 20 or later.
+- **Nothing runs on a server for the resume.** The resume is read in the visitor's browser, and job data is fetched from the public speedrun API by the browser. The only server code is `GET /api/v1/gates/{jobId}` and `GET /api/v1/audit`, which run as Vercel functions.
+- **From the command line:** `npm i -g vercel`, `vercel login`, then `vercel` for a preview or `vercel --prod` for production. `.vercel/` is gitignored.
+- **After each deploy,** upload a PDF resume on the live site to confirm the PDF reader loads. That is the one piece only tested locally.
+
 ## Pages
 
 - `/` the three-step flow: upload your resume, review your profile and say what you want, explore your matches.
@@ -76,7 +88,7 @@ Labels: strong 13 to 16, good 10 to 12, possible 7 to 9, weak 0 to 6. The page s
 - Only a slice of the board is analyzed. The speedrun API rate limits at about two requests a second, so matches arrive 15 at a time.
 - Country is guessed from the board's location text and is sometimes unknown.
 - The extraction rules behind the requirement cards have measured errors. See `/audit` and RESEARCH.md section 8. The matching rubric has not been evaluated against human judgments.
-- Not deployed. The production build passes; the PDF worker has only been exercised locally.
+- The production build passes and the PDF reader works in a local production build. It has not been verified on a live Vercel deployment yet.
 
 ## Audit scripts
 
