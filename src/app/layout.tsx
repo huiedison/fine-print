@@ -7,9 +7,9 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "fine_print: see the requirements before you apply",
+  title: "fine_print: find the roles worth your application",
   description:
-    "Tell fine_print three things about you. It reads listings on the speedrun talent network for the lines that rule you in or out, and quotes them.",
+    "Upload your resume, say what you want, and get live roles from the speedrun talent network ranked against your experience, with the evidence behind each match.",
 };
 
 export const viewport: Viewport = { themeColor: "#eceae5" };
@@ -35,6 +35,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               fine_print
             </a>
             <span className="flex items-center gap-1">
+              <Link href="/browse" className="micro rounded-full px-3 py-2 hover:bg-canvas">
+                browse
+              </Link>
               <Link href="/audit" className="micro rounded-full px-3 py-2 hover:bg-canvas">
                 results
               </Link>

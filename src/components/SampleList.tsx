@@ -90,7 +90,7 @@ export default function SampleList({ rows }: { rows: SampleRow[] }) {
           {list.slice(0, shown).map((r) => (
             <li key={r.id}>
               <Link
-                href={`/?job=${r.id}`}
+                href={`/browse?job=${r.id}`}
                 className="block rounded-2xl border border-line bg-card p-4 hover:border-ink"
               >
                 <span className="micro text-ink-3">

@@ -1,0 +1,72 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1933 >>
+stream
+BT
+/F1 9 Tf
+11 TL
+40 760 Td
+(Jordan Rivera) Tj T*
+(Vancouver, BC | jordan.rivera@example.com | linkedin.com/in/jordan-rivera-example) Tj T*
+() Tj T*
+(EDUCATION) Tj T*
+(University of Northern Cascadia) Tj T*
+(Bachelor of Arts in Economics and Statistics    Expected December 2027) Tj T*
+(Relevant coursework: Econometrics, Probability, Data Structures) Tj T*
+() Tj T*
+(EXPERIENCE) Tj T*
+(Harbourline Pension Partners | Product Analyst Intern    May 2026 - Present) Tj T*
+(Vancouver, BC) Tj T*
+(- Coordinated with compliance, operations and portfolio stakeholders to scope an internal reporting tool) Tj T*
+(- Built a Python and SQL pipeline that reduced manual reconciliation time from 6 hours to 40 minutes each week) Tj T*
+(- Presented findings to a 12-person steering group and wrote the rollout documentation) Tj T*
+() Tj T*
+(Lumen Collective | Co-founder, Go-to-Market Lead    Sep 2025 - Present) Tj T*
+(- Ran cold email outreach to 200 investment managers and booked 31 discovery calls) Tj T*
+(- Managed a team of 3 students building workflow automation prototypes for clients) Tj T*
+(- Led the launch of a client onboarding checklist that cut setup from two weeks to four days) Tj T*
+() Tj T*
+(Pacific Ridge Credit Union | Member Services Representative    Jun 2024 - Aug 2025) Tj T*
+(- Supported 40 customers a day with account requests and resolved escalations) Tj T*
+(- Trained 4 new staff on the teller system) Tj T*
+() Tj T*
+(PROJECTS) Tj T*
+(Transit Delay Dashboard | Python, Tableau) Tj T*
+(- Analyzed 2 million bus arrival records and built a dashboard of delay patterns by route) Tj T*
+(- Ran a regression to estimate the effect of weather on delays) Tj T*
+() Tj T*
+(Campus Marketplace) Tj T*
+(- Built a full-stack marketplace app with Next.js and PostgreSQL used by 300 students) Tj T*
+() Tj T*
+(SKILLS) Tj T*
+(Languages: Python, SQL, R, JavaScript) Tj T*
+(Tools: Excel, Tableau, Figma, Git, Notion) Tj T*
+() Tj T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000002226 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2296
+%%EOF

@@ -1,5 +1,5 @@
-import Finder from "@/components/Finder";
+import MatchFlow from "@/components/MatchFlow";
 
 export default function Home() {
-  return <Finder />;
+  return <MatchFlow />;
 }

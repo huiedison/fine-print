@@ -58,7 +58,7 @@ Early-career roles (about 11,000) crawled and indexed. Paste-a-link for any role
 
 ## Non-goals
 
-No auto-apply. No resume upload or rewriting. No fit score. No "fake job" or ghost-job label. No repost claims. No legal or immigration advice. No sponsorship guesses from company history. No stealth unmasking. No scraping beyond the speedrun API and public ATS endpoints.
+No auto-apply. No resume rewriting. No hiring-probability score. (Resume upload and explainable ranking were added on November 12, 2026: the resume is read in the browser, and the ranking is a documented rubric shown as a plain label. See README.md.) No "fake job" or ghost-job label. No repost claims. No legal or immigration advice. No sponsorship guesses from company history. No stealth unmasking. No scraping beyond the speedrun API and public ATS endpoints.
 
 ## Risks
 

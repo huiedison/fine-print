@@ -69,7 +69,7 @@ Layout rules:
 
 ## Hard constraints
 
-No auto-apply. No resume upload. No fit score. No "fake" or ghost-job label. No legal or immigration advice. No scraping beyond the speedrun API and public ATS job board endpoints. No unmasking of stealth companies. No secrets in the repo.
+No auto-apply. (Superseded on November 12, 2026: resume upload and explainable ranking are now in scope. The resume stays in the browser and any score is a matching rubric, never a hiring probability.) No "fake" or ghost-job label. No legal or immigration advice. No scraping beyond the speedrun API and public ATS job board endpoints. No unmasking of stealth companies. No secrets in the repo.
 
 ## Deliverables
 

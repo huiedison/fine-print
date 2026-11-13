@@ -8,6 +8,8 @@ export interface Sentence {
   /** The nearest heading line above, with its offsets, if directly adjacent. */
   heading: { text: string; start: number; end: number } | null;
   boilerplate: boolean;
+  /** The line was a list item. */
+  bullet: boolean;
 }
 
 const PREFERRED_HEAD =
@@ -94,6 +96,7 @@ export function segment(text: string): Sentence[] {
         section,
         heading: !headingLine && headingAdjacent ? lastHeading : null,
         boilerplate: BOILERPLATE.some((b) => b.test(t)),
+        bullet: /^\s*[-•*·]/.test(line),
       });
     }
     if (!headingLine) headingAdjacent = false;
